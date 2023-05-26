@@ -9,6 +9,7 @@ const route = useRoute()
 const type = ref('Dydx')
 const tabVal = ref('Stake')
 const RewardList = ref([])
+const RewardPage = ref(1)
 const StakeList = ref([])
 const AwardList = ref([])
 const TreasuryList = ref([])
@@ -45,11 +46,19 @@ watch(token,(token)=>{
         }
     }
 })
-
+function scrollEvent() {
+    var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+    var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+    var scrollHeight = document.documentElement.scrollHeight||document.body.scrollHeight;
+    if(scrollTop+windowHeight>=scrollHeight){   //考虑到滚动的位置一般可能会大于一点可滚动的高度，所以这里不能用等于
+        console.log("到达底部")
+    }   
+}
 onMounted(()=>{
     if(route.query.type){
         type.value = route.query.type
     }
+    window.onscroll = scrollEvent
     if(token.value){
         Axios.get(`/dao/rewardDetail/${typeMap[type.value]}`).then(res=>{
             RewardList.value = res.data.data
@@ -135,6 +144,7 @@ onMounted(()=>{
                 </div>
             </template>
             <el-empty v-else description="description" />
+            <div class="loading">loading...</div>
         </template>
         <template v-if="tabVal === 'Award'">
             <template v-if="AwardList.length !== 0">
@@ -236,11 +246,13 @@ onMounted(()=>{
     .RewardBox{
         width: 750px;
         // margin: auto;
+        height: 2000px;
         background: #3E2470;
         box-shadow: 0px 3px 20px 0px rgba(0,0,0,0.1);
         border-radius: 2.5rem;
         padding: 50px;
         box-sizing: border-box;
+        position: relative;
         @media (max-width:768px) {
             width: 95%;
             padding: 20px;
@@ -260,6 +272,14 @@ onMounted(()=>{
         }
         .RewardRow:nth-last-child(1){
             margin-bottom: 0;
+        }
+        .loading{
+            color: #fff;
+            text-align: center;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
         }
     }
 }

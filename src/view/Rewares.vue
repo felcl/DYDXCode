@@ -47,6 +47,7 @@ onMounted(()=>{
   window.onresize = () => {
     setDialogWidth()
   }
+  
 })
 let setDialogWidth = (()=>{
   let val = document.body.clientWidth
@@ -134,6 +135,7 @@ const copyFun = (text)=>{
         type: 'success',
     })
 }
+
 function changeNumPut(event) {
   let value = event.target.value;
   if (/^\./g.test(value)) {
