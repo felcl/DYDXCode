@@ -31,7 +31,7 @@ const zh = {
     "Invite": "邀請",
     "Withdraw": "提取",
     "RewardTotal": "獎勵總額",
-    "StakeTotal": "股份總額",
+    "StakeTotal": "質押總額",
     "DydxReward": "Dydx 獎勵",
     "SVIPReward": "高級會員獎勵",
     "Pleaseenterthe": "請輸入邀請人地址",
@@ -64,5 +64,7 @@ const zh = {
     "Stake": "質押",
     "Award": "獎勵",
     "Treasury": "國庫",
+    "teamPerformance": "團隊收益",
+    "InvitePeople": "邀请人",
 }
 export default zh

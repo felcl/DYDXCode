@@ -37,7 +37,7 @@ function goPath(path){
           </div>
           <div class="TotalItem dn425">
             <div class="totalLabel">{{$t('TotalTreasury')}}</div>
-            <div class="totalValue" v-if="Info">{{ Info.userCount }}</div>
+            <div class="totalValue" v-if="Info">${{ Info.nationalAmount }}</div>
           </div>
         </div>
         <!-- <div class="FriendlyLinks">
@@ -117,7 +117,7 @@ function goPath(path){
         </div>
         <div class="StakeNow flexCenter" @click="goPath('/Dao')">{{$t('stakenow')}}</div>
       </div>
-      <div class="join">
+      <!-- <div class="join">
         <div class="CenterTitle">{{ $t('Joinourcommunity') }}</div>
         <div class="CenterSubTitle">
           {{ $t('Learnmoreabout') }}
@@ -150,7 +150,7 @@ function goPath(path){
                 </div>
             </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -163,6 +163,7 @@ function goPath(path){
   background: url("../assets/Home/bg.png") 0 0 / 100% no-repeat;
   min-height: 100vh;
   padding-top: 12.7rem;
+  padding-bottom: 12.7rem;
   overflow: hidden;
   @media (max-width:428px) {
     background: url("../assets/Home/h5bg.png") 0 0 / 100% no-repeat;
@@ -177,7 +178,7 @@ function goPath(path){
     }
     .title {
       font-size: 3.7rem;
-      font-family: bitte;
+      // font-family: bitte;
       line-height: 1;
       color: #ffffff;
       font-weight: bold;
@@ -265,7 +266,7 @@ function goPath(path){
   .CenterTitle {
     margin-top: 3.5rem;
     font-size: 1.8rem;
-    font-family: bitte;
+    // font-family: bitte;
     line-height: 1;
     color: #FFFFFF;
     text-align: center;
@@ -461,7 +462,7 @@ function goPath(path){
         }
         .bannerMain{
           font-size: 36px;
-          font-family: bitte;
+          // font-family: bitte;
           @media (max-width:1024px) {
             font-size: 26px;
           }

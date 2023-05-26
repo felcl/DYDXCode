@@ -6,14 +6,26 @@
       <div></div>
     </div>
     <div class="TeamInfo">
-      <div class="totalLabel">{{ $t('Totalpeople') }}</div>
-      <div class="totalNum">{{ invitelist.length }}</div>
+      <div class="totalNumperformance">
+        <div class="TeamInfoItem">
+          <div class="totalLabel">{{ $t('Totalpeople') }}</div>
+          <div class="totalNum">{{ invitelist.length }}</div>
+        </div>
+        <div class="TeamInfoItem">
+          <div class="totalLabel">{{ $t('teamPerformance') }}</div>
+          <div class="totalNum">${{ InvitationrecordInfo ? InvitationrecordInfo.teamAmount : 0 }}</div>
+        </div>
+      </div>
       <div class="InviteUrl">
         {{AddrHandle(inviteUrl , 11 , 11)}}
         <img src="../assets/Home/copy.png" alt="" />
       </div>
       <div class="recordList">
-        <div class="recordLabel">{{ $t('Cumulativewithdrawal') }}</div>
+        <div class="recordLabel">{{ $t('Invitationrecord') }}</div>
+        <div class="recordItem superior">
+          <span class="address">{{InvitationrecordInfo ? AddrHandle(InvitationrecordInfo.refereeUserAddress,6,6)+'（'+$t('InvitePeople')+'）' : ''}}</span>
+          <span>{{InvitationrecordInfo ? dateFormat('YYYY/mm/dd HH:MM:SS',new Date(InvitationrecordInfo.bindTime)) : ''}}</span>
+        </div>
         <div class="recordItem" v-for="item in invitelist">
           <span class="address">{{AddrHandle(item.userAddress,6,6)}}</span>
           <span>{{dateFormat('YYYY/mm/dd HH:MM:SS',new Date(item.createTime))}}</span>
@@ -33,6 +45,7 @@ const router = useRouter()
 const store = useStore();
 const invitelist = ref([])
 const inviteUrl = ref('')
+const InvitationrecordInfo = ref(null)
 const token = computed(() => {
   return store.state.token;
 });
@@ -54,6 +67,12 @@ watch(
           invitelist.value = res.data.data;
         }
         console.log(res, "用户邀请记录");
+      });
+      Axios.get("/uUser/teamAndReferee").then((res) => {
+        if (res.data.code === 200) {
+          InvitationrecordInfo.value = res.data.data;
+        }
+        console.log(res, "用户上级");
       });
     }
   },
@@ -99,6 +118,13 @@ watch(
     @media (max-width:750px) {
       width: 95%;
     }
+    .totalNumperformance{
+      display: flex;
+      justify-content: center;
+      .TeamInfoItem{
+        width: 30%;
+      }
+    }
     .totalLabel {
       font-size: 14px;
       color: #ffffff;
@@ -140,7 +166,7 @@ watch(
       .recordItem {
         display: flex;
         justify-content: space-between;
-        margin-top: 18px;
+        margin-top: 12px;
         span {
           font-weight: 400;
           color: #fff;
@@ -150,6 +176,9 @@ watch(
           color: #fff;
           font-size: 16px;
         }
+      }
+      .superior{
+        margin-bottom: 26px;
       }
     }
   }

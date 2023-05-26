@@ -64,5 +64,7 @@ const en = {
     "Stake": "Stake",
     "Award": "Award",
     "Treasury": "Treasury",
+    "teamPerformance": "team performance",
+    "InvitePeople": "Invite people",
 }
 export default en

@@ -1,5 +1,13 @@
+@font-face{
+  font-family: bitte;  /*定义字体名称*/
+  src: url(./assets/font/font.ttf);  /*定义字体文件路径及格式*/
+}
+@font-face{
+  font-family: SiYuan;  /*定义字体名称*/
+  src: url(./assets/font/SiYuan.otf);  /*定义字体文件路径及格式*/
+}
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: SiYuan !important;
   line-height: 1.5;
   font-weight: 400;
 
@@ -14,11 +22,9 @@
 body{
   margin: 0;
   padding: 0;
+
 }
-@font-face{
-  font-family: bitte;  /*定义字体名称*/
-  src: url(./assets/font/font.ttf);  /*定义字体文件路径及格式*/
-}
+
 .el-empty__image{
   opacity: 0.35 !important;
 }

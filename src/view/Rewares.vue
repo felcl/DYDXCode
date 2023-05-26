@@ -369,11 +369,11 @@ function Withdraw(){
         <el-empty v-else description="description" />
       </div>
     </template>
-    <el-dialog v-model="centerDialogVisible" title="Invitation binding" :width="dialogWidth" center :close-on-press-escape="false">
+    <el-dialog v-model="centerDialogVisible" :title="$t('Invite')" :width="dialogWidth" center :close-on-press-escape="false">
       <input class="InvitationInput" :placeholder="$t('Pleaseenterthe')" v-model="InvitationLink" type="text">
       <div class="enter" @click="bind">{{ $t('Confirm') }}</div>
     </el-dialog>
-    <el-dialog v-model="WithdrawVisible" title="Invitation binding" :width="dialogWidth" center :close-on-press-escape="false">
+    <el-dialog v-model="WithdrawVisible" :title="$t('Withdraw')" :width="dialogWidth" center :close-on-press-escape="false">
         <div class="balanceLabel">{{$t('Balance')}}：{{ amount }}</div>
         <div class="InvitationInput">
             <input :placeholder="$t('Pleaseenterthe1')" @input="changeNumPut" v-model="WithdrawAmount" type="text">

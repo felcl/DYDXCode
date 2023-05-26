@@ -23,9 +23,9 @@ const inAllowance = ref(false)
 const inSVIPAllowance = ref(false)
 const inSubscribe = ref(false)
 const inSVIPSubscribe = ref(false)
-const USDTAllowance = ref(new BigNumber(0))
+// const USDTAllowance = ref(new BigNumber(0))
 const ARBAllowance = ref(new BigNumber(0))
-const USDTBalance = ref(new BigNumber(0))
+// const USDTBalance = ref(new BigNumber(0))
 const ARBBalance = ref(new BigNumber(0))
 const store = useStore();
 const address = computed(() => {
@@ -35,11 +35,11 @@ watch(
   address,
   (address) => {
     if (address) {
-      contract.USDT.methods.balanceOf(address).call().then(res=>{
-        let amount = new BigNumber(res).div(10 ** 6)
-        USDTBalance.value = amount
-        console.log(amount,"获取用户余额")
-      })
+      // contract.USDT.methods.balanceOf(address).call().then(res=>{
+      //   let amount = new BigNumber(res).div(10 ** 6)
+      //   // USDTBalance.value = amount
+      //   console.log(amount,"获取用户余额")
+      // })
       contract.ARB.methods.balanceOf(address).call().then(res=>{
         let amount = new BigNumber(res).div(10 ** 18)
         ARBBalance.value = amount
@@ -191,7 +191,6 @@ onMounted(()=>{
 <template>
   <div class="Stake">
     <div class="StakeTitle">{{ $t('DAO') }}</div>
-    <div class="StakeSubTitle">{{ $t('StakeUSDTand') }}</div>
     <div class="StakeItem">
       <div class="totalNetwork">
         <div class="totalItem">
@@ -201,7 +200,7 @@ onMounted(()=>{
         <div class="separate"></div>
         <div class="totalItem">
           <div class="label">{{ $t('DAOTreasury') }}</div>
-          <div class="number">{{  NumSplic(daoAmount,2,true) }}</div>
+          <div class="number">$ {{  NumSplic(daoAmount,2,true) }}</div>
         </div>
       </div>
       <div class="Increase">
