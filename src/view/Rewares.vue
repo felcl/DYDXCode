@@ -77,13 +77,13 @@ watch(token,(token)=>{
     }
     console.log(res,"用户质押信息")
   })
-  Axios.get('/dao/rewardDetail/1').then(res=>{
+  Axios.get('/dao/rewardDetail/1/1/10').then(res=>{
     if(res.data.code === 200){
         AIncome.value = res.data.data.slice(0, 10)
     }
     console.log(res,"用户A币收益列表")
   })
-  Axios.get('/dao/rewardDetail/2').then(res=>{
+  Axios.get('/dao/rewardDetail/2/1/10').then(res=>{
     if(res.data.code === 200){
         SCVIPIncome.value = res.data.data.slice(0, 10)
     }

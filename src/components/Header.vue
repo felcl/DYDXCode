@@ -67,17 +67,26 @@ onMounted(()=>{
     <div class="HeaderLeft">
       <img :src="route.path === '/' ? logo:blackLogo" class="Logo" alt="">
       <div class="menu">
-        <div :class="['menuItem']"  @click="goPath('/')">
-          <img :src="IconPath('/',HomeActiveIcon,HomeIcon,blackHomeIcon)" alt="">
-          <span>{{ $t("Home") }}</span>
+        <div :class="['menuItem',{ActiveMenuItem:route.path === '/'}]"  @click="goPath('/')">
+          <div>
+            <img :src="IconPath('/',HomeActiveIcon,HomeIcon,blackHomeIcon)" alt="">
+            <span>{{ $t("Home") }}</span>
+            <div class="ActiveBorder"></div>
+          </div>
         </div>
-        <div :class="['menuItem']" @click="goPath('/Dao')">
-          <img :src="IconPath('/Dao',StakeActiveIcon,StakeIcon,blackStakeIcon)" alt="">
-          <span>{{ $t("DAO") }}</span>
+        <div :class="['menuItem',{ActiveMenuItem:route.path === '/Dao'}]" @click="goPath('/Dao')">
+          <div>
+            <img :src="IconPath('/Dao',StakeActiveIcon,StakeIcon,blackStakeIcon)" alt="">
+            <span>{{ $t("DAO") }}</span>
+            <div class="ActiveBorder"></div>
+          </div>
         </div>
-        <div :class="['menuItem']" @click="goPath('/Rewares')">
-          <img :src="IconPath('/Rewares',RewardsActiveIcon,RewardsIcon,blackRewardsIcon)" alt="">
-          <span>{{ $t("rewards") }}</span>
+        <div :class="['menuItem',{ActiveMenuItem:route.path === '/Rewares'}]" @click="goPath('/Rewares')">
+          <div>
+            <img :src="IconPath('/Rewares',RewardsActiveIcon,RewardsIcon,blackRewardsIcon)" alt="">
+            <span>{{ $t("rewards") }}</span>
+            <div class="ActiveBorder"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -194,7 +203,8 @@ onMounted(()=>{
     }
     .menuItem {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      justify-content: center;
       margin-right: 3.2rem;
       cursor: pointer;
       img {
@@ -221,6 +231,20 @@ onMounted(()=>{
           font-size: 2.5rem;
         }
       }
+    }
+    .ActiveMenuItem{
+      span{
+        color: #00A0E9;
+      }
+      .ActiveBorder{
+        border-bottom: 1px solid #00A0E9;
+        width: 100%;
+      }
+    }
+    .ActiveBorder{
+      border: 1px solid transparent;
+      width: 0px;
+      transition: all 0.3s;
     }
     .blackFont{
       span{

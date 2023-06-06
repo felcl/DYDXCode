@@ -27,7 +27,7 @@
           <span>{{InvitationrecordInfo ? dateFormat('YYYY/mm/dd HH:MM:SS',new Date(InvitationrecordInfo.bindTime)) : ''}}</span>
         </div>
         <div class="recordItem" v-for="item in invitelist">
-          <span class="address">{{AddrHandle(item.userAddress,6,6)}}</span>
+          <span class="address">{{AddrHandle(item.userAddress,6,6)}} <img src="../assets/Home/Rj.png" v-if="item.isPledge === 1" alt=""></span>
           <span>{{dateFormat('YYYY/mm/dd HH:MM:SS',new Date(item.createTime))}}</span>
         </div>
       </div>
@@ -175,6 +175,9 @@ watch(
         .address {
           color: #fff;
           font-size: 16px;
+          img{
+            margin-left: 16px;
+          }
         }
       }
       .superior{
