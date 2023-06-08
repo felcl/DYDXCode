@@ -66,5 +66,7 @@ const zh = {
     "Treasury": "國庫",
     "teamPerformance": "團隊收益",
     "InvitePeople": "邀请人",
+    "Allteam": "總業績",
+    "Efficient": "有效業績",
 }
 export default zh

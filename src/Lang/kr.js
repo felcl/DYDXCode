@@ -66,5 +66,7 @@ const kr = {
     "Treasury": "국고",
     "teamPerformance": "팀 성과",
     "InvitePeople": "초대 연락처",
+    "Allteam": "총 실적",
+    "Efficient": "효과적인 성능",
 }
 export default kr

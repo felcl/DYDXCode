@@ -12,8 +12,12 @@
           <div class="totalNum">{{ invitelist.length }}</div>
         </div>
         <div class="TeamInfoItem">
-          <div class="totalLabel">{{ $t('teamPerformance') }}</div>
+          <div class="totalLabel">{{ $t('Efficient') }}</div>
           <div class="totalNum">${{ InvitationrecordInfo ? InvitationrecordInfo.teamAmount : 0 }}</div>
+        </div>
+        <div class="TeamInfoItem">
+          <div class="totalLabel">{{ $t('Allteam') }}</div>
+          <div class="totalNum">${{ InvitationrecordInfo ? InvitationrecordInfo.allTeamAmount : 0 }}</div>
         </div>
       </div>
       <div class="InviteUrl">
@@ -135,6 +139,12 @@ watch(
       font-weight: 500;
       color: #ffffff;
       margin-top: 7px;
+      @media (max-width:768px) {
+        font-size: 30px;
+      }
+      @media (max-width:500px) {
+        font-size: 20px;
+      }
     }
     .InviteUrl {
       font-weight: 500;

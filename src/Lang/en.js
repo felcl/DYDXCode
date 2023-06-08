@@ -66,5 +66,7 @@ const en = {
     "Treasury": "Treasury",
     "teamPerformance": "team performance",
     "InvitePeople": "Invite people",
+    "Allteam": "Total",
+    "Efficient": "Efficient",
 }
 export default en
