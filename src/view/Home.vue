@@ -9,7 +9,7 @@ onMounted(()=>{
     if(res.data.code === 200){
       Info.value = res.data.data
     }
-    console.log(res,"首页数据")
+    // console.log(res,"首页数据")
   })
 })
 function goPath(path){

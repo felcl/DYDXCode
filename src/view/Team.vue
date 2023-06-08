@@ -26,7 +26,7 @@
       </div>
       <div class="recordList">
         <div class="recordLabel">{{ $t('Invitationrecord') }}</div>
-        <div class="recordItem superior">
+        <div class="recordItem superior" >
           <span class="address">{{InvitationrecordInfo ? AddrHandle(InvitationrecordInfo.refereeUserAddress,6,6)+'（'+$t('InvitePeople')+'）' : ''}}</span>
           <span>{{InvitationrecordInfo ? dateFormat('YYYY/mm/dd HH:MM:SS',new Date(InvitationrecordInfo.bindTime)) : ''}}</span>
         </div>
@@ -57,7 +57,7 @@ const address = computed(() => {
   return store.state.address;
 });
 watch(address,(address)=>{
-    console.log(location)
+    // console.log(location)
     inviteUrl.value = location.origin+location.pathname+'#/?address='+address
 },{
     immediate:true
@@ -70,13 +70,13 @@ watch(
         if (res.data.code === 200) {
           invitelist.value = res.data.data;
         }
-        console.log(res, "用户邀请记录");
+        // console.log(res, "用户邀请记录");
       });
       Axios.get("/uUser/teamAndReferee").then((res) => {
         if (res.data.code === 200) {
           InvitationrecordInfo.value = res.data.data;
         }
-        console.log(res, "用户上级");
+        // console.log(res, "用户上级");
       });
     }
   },
@@ -162,7 +162,8 @@ watch(
     }
     .recordList {
       width: 100%;
-      height: 500px;
+      min-height: 500px;
+      overflow:auto;
       border-radius: 50px;
       background: #3E2470;
       padding: 35px 30px;

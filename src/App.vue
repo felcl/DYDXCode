@@ -37,7 +37,7 @@ watch(
             }
           })
         }
-        console.log(res,"用户登录")
+        // console.log(res,"用户登录")
       })
     }
   },
@@ -92,7 +92,7 @@ function bind(){
           type: 'warning',
       })
     }
-    console.log(res,"绑定上级")
+    // console.log(res,"绑定上级")
   })
 }
 onMounted(async()=>{
@@ -112,7 +112,7 @@ onMounted(async()=>{
           init(address=>{
             if(address)
             store.commit('SETADDRESS',address)
-            console.log(address)
+            // console.log(address)
           })
         })
       }else{
@@ -120,18 +120,18 @@ onMounted(async()=>{
         init(address=>{
           if(address)
           store.commit('SETADDRESS',address)
-          console.log(address)
+          // console.log(address)
         })
       }
       window.ethereum.on('connect', connectInfo=>{
-        console.log("链接",connectInfo)
+        // console.log("链接",connectInfo)
       });
       //链改变事件
       window.ethereum.on('chainChanged', info=>{
         // this.chainId = info
       });
       window.ethereum.on('disconnect', async res=>{
-        console.log("链接已断开",res)
+        // console.log("链接已断开",res)
         let chainId = await window.ethereum.request({ method: "eth_chainId" });
         if(chainId !== chainConfig.chainId){
           store.commit('SETADDRESS','')
@@ -143,10 +143,10 @@ onMounted(async()=>{
         }else{
             store.commit('SETADDRESS','')
         }
-        console.log("切换账号",accounts)
+        // console.log("切换账号",accounts)
       });
     }else{
-      console.log("未安装钱包")
+      // console.log("未安装钱包")
     }
 })
 

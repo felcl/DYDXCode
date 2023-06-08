@@ -43,7 +43,7 @@ watch(
       contract.ARB.methods.balanceOf(address).call().then(res=>{
         let amount = new BigNumber(res).div(10 ** 18)
         ARBBalance.value = amount
-        console.log(amount,"获取用户ARB余额")
+        // console.log(amount,"获取用户ARB余额")
       })
       getAllowance(contractAddress.Dao)
     }
@@ -71,7 +71,7 @@ function getAllowance(toAddress) {
     .then((res) => {
       res = new BigNumber(res).div(10 ** TokenConfig.ARB.decimals);
       ARBAllowance.value = res
-      console.log(res.toString(),"授权额度");
+      // console.log(res.toString(),"授权额度");
     });
 }
 function approve(type){
@@ -144,7 +144,7 @@ function subscribe(id,type,buyAmount){
     if(type === 'svip'){
       inSVIPSubscribe.value = true;
     }
-  console.log(id)
+  // console.log(id)
   Axios.post('/dao/stake',{
     id,
     userAddress:address.value
@@ -164,7 +164,7 @@ function subscribe(id,type,buyAmount){
       message: $t('Pledgesuccessful'),
       type: 'success',
     })
-    console.log(res,'申购结果')
+    // console.log(res,'申购结果')
   }).finally(()=>{
     if(type === 'vip'){
       inSubscribe.value = false;
@@ -183,7 +183,7 @@ onMounted(()=>{
       totalRewardAmount.value = res.data.data.totalRewardAmount
       daoAmount.value = res.data.data.daoAmount
     }
-    console.log(res,"获取配置信息")
+    // console.log(res,"获取配置信息")
   })
 })
 </script>

@@ -10,12 +10,8 @@
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
     <script>
-        // 得到屏幕的宽度
         var htmlWidth = document.documentElement.clientWidth || document.body.clientWidth;
-        // console.log('mt',htmlWidth)
-        //得到html的Dom元素
         var htmlDom = document.getElementsByTagName('html')[0];
-        //设置根元素字体大小
         htmlDom.style.fontSize = Math.ceil(htmlWidth / 96) + 'px';
         window.onresize = function () {
           var htmlWidth = document.documentElement.clientWidth || document.body.clientWidth;

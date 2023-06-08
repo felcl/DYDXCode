@@ -10,7 +10,7 @@ export const connect =function (callback){
             window.ethereum.enable()
         } catch (error) {
             // 用户不授权时
-            console.error('User denied account access')
+            // console.error('User denied account access')
         }
     }
     var web3 = new Web3(web3Provider) //web3js就是你需要的web3实例
@@ -31,7 +31,7 @@ export const init = function(callback) {
             window.ethereum.enable()
         } catch (error) {
             // 用户不授权时
-            console.error('User denied account access')
+            // console.error('User denied account access')
         }
     } 
     var web3 = new Web3(web3Provider) //web3js就是你需要的web3实例
@@ -59,11 +59,11 @@ export async function changeNetwork(callback) {
     const request = (window.ethereum).request;
     // 获取当前链id
     const chainId = await request({ method: "eth_chainId" });
-    console.log(`chainId:${chainId}`);
+    // console.log(`chainId:${chainId}`);
     if (chainId == chainConfig.chainId) {
-        console.log(`当前链已经是:${chainConfig.chainName}`);
+        // console.log(`当前链已经是:${chainConfig.chainName}`);
     } else {
-        console.log(`正在切换链为:${chainConfig.chainName}`);
+        // console.log(`正在切换链为:${chainConfig.chainName}`);
     }
      
     try {
@@ -77,7 +77,7 @@ export async function changeNetwork(callback) {
     } catch (e) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const err = e;
-      console.log(err);
+      // console.log(err);
       if (err.code === 4902) {
         try {
             // 添加
@@ -87,10 +87,10 @@ export async function changeNetwork(callback) {
           });
           callback()
         } catch (addError) {
-          console.error(addError);
+          // console.error(addError);
         }
       } else {
-        console.log(`ERROR:${err.message}`);
+        // console.log(`ERROR:${err.message}`);
       }
       return true;
     }

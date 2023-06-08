@@ -75,19 +75,19 @@ watch(token,(token)=>{
       stakeTotalAmount.value = res.data.data.stakeTotalAmount
       drawLimitAmount.value = res.data.data.drawLimitAmount
     }
-    console.log(res,"用户质押信息")
+    // console.log(res,"用户质押信息")
   })
   Axios.get('/dao/rewardDetail/1/1/10').then(res=>{
     if(res.data.code === 200){
         AIncome.value = res.data.data.slice(0, 10)
     }
-    console.log(res,"用户A币收益列表")
+    // console.log(res,"用户A币收益列表")
   })
   Axios.get('/dao/rewardDetail/2/1/10').then(res=>{
     if(res.data.code === 200){
         SCVIPIncome.value = res.data.data.slice(0, 10)
     }
-    console.log(res,"用户SVIP收益列表")
+    // console.log(res,"用户SVIP收益列表")
   })
   Axios.get('/dao/drawDetail').then(res=>{
     if(res.data.code === 200){
@@ -96,32 +96,32 @@ watch(token,(token)=>{
         })
         Withdrawallist.value = res.data.data.slice(0, 10)
     }
-    console.log(res,"用户提现记录")
+    // console.log(res,"用户提现记录")
   })
   Axios.get('/dao/userReferee').then(res=>{
     if(res.data.code === 200){
         invitelist.value = res.data.data.slice(0, 10)
     }
-    console.log(res,"用户邀请记录")
+    // console.log(res,"用户邀请记录")
   })
   Axios.get('/uUser/checkBind').then(res=>{
     if(res.data.code === 200){
         isBind.value = res.data.data
     }
-    console.log(res,"检测是否绑定上级地址")
+    // console.log(res,"检测是否绑定上级地址")
   })
   Axios.get('/uUser/userDetail').then(res=>{
     if(res.data.code === 200){
       svipLevel.value = res.data.data.svipLevel
         // isBind.value = res.data.data
     }
-    console.log(res,"用户详情")
+    // console.log(res,"用户详情")
   })
   Axios.get('/dao/base').then(res=>{
     if(res.data.code === 200){
       arbPrice.value = res.data.data.arbPrice
     }
-    console.log(res,"获取配置信息")
+    // console.log(res,"获取配置信息")
   })
  }
 },{
@@ -174,7 +174,7 @@ function bind(){
             if(res.data.code === 200){
                 isBind.value = res.data.data
             }
-            console.log(res,"检测是否绑定上级地址")
+            // console.log(res,"检测是否绑定上级地址")
         })
       ElNotification({
           title: 'Success',
@@ -188,7 +188,7 @@ function bind(){
           type: 'warning',
       })
     }
-    console.log(res,"绑定上级")
+    // console.log(res,"绑定上级")
   })
 }
 function Withdraw(){
@@ -211,7 +211,7 @@ function Withdraw(){
     Axios.post('/dao/draw',{
         amount:WithdrawAmount.value
     }).then(res=>{
-        console.log(res)
+        // console.log(res)
         if(res.data.code === 200){
             WithdrawVisible.value =false
             contract.Dao.methods.drawToken(res.data.data).send({from:address.value}).then(res=>{
@@ -220,7 +220,7 @@ function Withdraw(){
                     message: $t('Receivedsuccessfully'),
                     type: 'success',
                 })
-                console.log(res,"提现")
+                // console.log(res,"提现")
             }).finally(()=>{
                 inWithdraw.value = false
             })

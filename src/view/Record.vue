@@ -14,7 +14,7 @@ watch(token,(token)=>{
 if(token){
     Axios.get(`/dao/drawDetail`).then(res=>{
         RecordList.value = res.data.data
-        console.log(res,"提现记录")
+        // console.log(res,"提现记录")
     })
 }
 },{
@@ -34,13 +34,16 @@ function goPath(path){
         </div>
         <!-- <div class="subTitle">Track your MATIC staking rewards with ARB</div> -->
         <div class="RecordList">
-            <div class="RecordItem" v-for="item in RecordList">
-                <div class="address">{{ AddrHandle(item.userAddress,6,6) }}</div>
-                <div class="numTime">
-                    <div class="num">{{ item.drawAmount }}</div>
-                    <div class="time">{{ dateFormat('YYYY/mm/dd HH:MM:SS',new Date(item.createTime)) }}</div>
+            <template v-if="RecordList.length > 0">
+                <div class="RecordItem" v-for="item in RecordList">
+                    <div class="address">{{ AddrHandle(item.userAddress,6,6) }}</div>
+                    <div class="numTime">
+                        <div class="num">{{ item.drawAmount }}</div>
+                        <div class="time">{{ dateFormat('YYYY/mm/dd HH:MM:SS',new Date(item.createTime)) }}</div>
+                    </div>
                 </div>
-            </div>
+            </template>
+            <el-empty v-else description="description" />
         </div>
     </div>
 </template>
@@ -64,6 +67,9 @@ function goPath(path){
         font-size: 30px;
         color: #FFFFFF;
         align-items: center;
+        @media (max-width:800px) {
+            width: calc(100% - 50px);
+        }
         img{
             height: 20px;
         }
@@ -73,14 +79,18 @@ function goPath(path){
         font-size: 14px;text-align: center;
     }
     .RecordList{
-        border-radius: 50px;
+        border-radius: 2.5rem;
         padding: 38px 30px;
         box-sizing: border-box;
-        height: 808px;
+        // height: 808px;
         box-shadow: 0px 3px 20px 0px rgba(0,0,0,0.1);
         background: #3E2470;
         width: 750px;
         margin-top: 20px;
+        @media (max-width:800px) {
+            width: calc(100% - 50px);
+            margin: 20px 25px 0;
+        }
         .RecordItem{
             display: flex;
             align-items: center;

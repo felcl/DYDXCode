@@ -58,7 +58,7 @@ const changeLang = (val) => {
   localStorage.setItem("lang", val);
 };
 onMounted(()=>{
-  console.log(route.path)
+  // console.log(route.path)
 })
 </script>
 

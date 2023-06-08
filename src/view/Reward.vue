@@ -28,20 +28,20 @@ watch(token,(token)=>{
     if(token){
         Axios.get(`/dao/rewardDetail/${typeMap[type.value]}`).then(res=>{
             RewardList.value = res.data.data
-            console.log(res,"收益记录")
+            // console.log(res,"收益记录")
         })
         Axios.get(`/dao/stakeRecord/${typeMap[type.value]}`).then(res=>{
             StakeList.value = res.data.data
-            console.log(res,"质押记录")
+            // console.log(res,"质押记录")
         })
         Axios.get(`/dao/reward/${rewardTypeMap[type.value]}`).then(res=>{
             AwardList.value = res.data.data
-            console.log(res,"邀请奖励")
+            // console.log(res,"邀请奖励")
         })
         if(type.value === 'SVIP'){
             Axios.get(`/dao/reward/4`).then(res=>{
                 TreasuryList.value = res.data.data
-                console.log(res,"国库奖励")
+                // console.log(res,"国库奖励")
             })
         }
     }
@@ -51,7 +51,7 @@ function scrollEvent() {
     var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
     var scrollHeight = document.documentElement.scrollHeight||document.body.scrollHeight;
     if(scrollTop+windowHeight>=scrollHeight){   //考虑到滚动的位置一般可能会大于一点可滚动的高度，所以这里不能用等于
-        console.log("到达底部")
+        // console.log("到达底部")
     }   
 }
 onMounted(()=>{
@@ -62,20 +62,20 @@ onMounted(()=>{
     if(token.value){
         Axios.get(`/dao/rewardDetail/${typeMap[type.value]}`).then(res=>{
             RewardList.value = res.data.data
-            console.log(res,"收益记录")
+            // console.log(res,"收益记录")
         })
         Axios.get(`/dao/stakeRecord/${typeMap[type.value]}`).then(res=>{
             StakeList.value = res.data.data
-            console.log(res,"质押记录")
+            // console.log(res,"质押记录")
         })
         Axios.get(`/dao/reward/${rewardTypeMap[type.value]}`).then(res=>{
             AwardList.value = res.data.data
-            console.log(res,"邀请奖励")
+            // console.log(res,"邀请奖励")
         })
         if(type.value === 'SVIP'){
             Axios.get(`/dao/reward/4`).then(res=>{
                 TreasuryList.value = res.data.data
-                console.log(res,"国库奖励")
+                // console.log(res,"国库奖励")
             })
         }
     }
@@ -144,7 +144,7 @@ onMounted(()=>{
                 </div>
             </template>
             <el-empty v-else description="description" />
-            <div class="loading">loading...</div>
+            <div class="loading" v-if="RewardList.length >=20">loading...</div>
         </template>
         <template v-if="tabVal === 'Award'">
             <template v-if="AwardList.length !== 0">
@@ -246,7 +246,6 @@ onMounted(()=>{
     .RewardBox{
         width: 750px;
         // margin: auto;
-        height: 2000px;
         background: #3E2470;
         box-shadow: 0px 3px 20px 0px rgba(0,0,0,0.1);
         border-radius: 2.5rem;
