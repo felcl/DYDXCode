@@ -117,19 +117,26 @@ function goPath(path){
         </div>
         <div class="StakeNow flexCenter" @click="goPath('/Dao')">{{$t('stakenow')}}</div>
       </div>
-      <!-- <div class="join">
+      <div class="join">
         <div class="CenterTitle">{{ $t('Joinourcommunity') }}</div>
         <div class="CenterSubTitle">
           {{ $t('Learnmoreabout') }}
         </div>
-        <div class="joinBanner">
-          <img src="../assets/Home/book.png" alt="">
-            <div>
-              <div class="bannerMain">{{ $t('DYDXinTwitter') }}</div>
-              <div class="bannerSub">{{ $t('Follow') }} @XXXXXX</div>
-            </div>
-        </div>
-        <div class="contactRow">
+        <a href="https://t.me/DydxDao" target="_blank">
+          <div class="joinBanner">
+            <img src="../assets/Home/Telegram.png" alt="">
+              <div>
+                <div class="bannerMain">DYDX in Telegram</div>
+                <div class="bannerSub">{{ $t('Joinchat') }}</div>
+              </div>
+            <!-- <img src="../assets/Home/book.png" alt="">
+              <div>
+                <div class="bannerMain">{{ $t('DYDXinTwitter') }}</div>
+                <div class="bannerSub">{{ $t('Follow') }} @XXXXXX</div>
+              </div> -->
+          </div>
+        </a>
+        <!-- <div class="contactRow">
           <div class="contactItem">
                 <div class="icon">
                     <img src="../assets/Home/Telegram.png" alt="" />
@@ -149,8 +156,8 @@ function goPath(path){
                     <div class="subTitle">{{ $t('Jointhecommunity') }}</div>
                 </div>
             </div>
-        </div>
-      </div> -->
+        </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -432,6 +439,9 @@ function goPath(path){
         max-width: 53.75rem;
         margin:12px auto 0;
     }
+    a{
+      text-decoration: none;
+    }
     .joinBanner{
         width: 53.75rem;
         height: 11.2rem;
@@ -460,8 +470,10 @@ function goPath(path){
             width: 38px;
           }
         }
+
         .bannerMain{
           font-size: 36px;
+          text-decoration: none;
           // font-family: bitte;
           @media (max-width:1024px) {
             font-size: 26px;
