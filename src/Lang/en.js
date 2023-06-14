@@ -1,7 +1,7 @@
 const en = {
     "Home": "Home",
     "DAO": "DAO",
-    "rewards": "rewards",
+    "rewards": "REWARDS",
     "Connectwallet": "Connect wallet",
     "DydxFoundationFor": "Dydx Foundation For Staked Tokens",
     "Simplifiedandsecure": "Simplified and secure participation in staking",

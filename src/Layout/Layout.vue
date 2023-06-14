@@ -37,7 +37,7 @@ const Connect=()=>{
 
 <template>
   <Header></Header>
-  <router-view></router-view>
+  <router-view></router-view> 
   <el-drawer v-model="leftMenu"  @close="closeMenuSwitch" :size="176" :with-header="false">
     <div class="leftMenuTop">
       <div class="drawerLogo">
@@ -66,7 +66,7 @@ const Connect=()=>{
 
 <style lang="scss">
 .Home{
-    background: url('../assets/Home/bg.png') 0 0 / 100% no-repeat;
+    // background: url('../assets/Home/bg.png') 0 0 / 100% no-repeat;
     min-height: 100vh;
 }
 .drawerLogo{

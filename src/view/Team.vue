@@ -11,29 +11,39 @@
           <div class="totalLabel">{{ $t('Totalpeople') }}</div>
           <div class="totalNum">{{ invitelist.length }}</div>
         </div>
+        <div class="separate"></div>
         <div class="TeamInfoItem">
           <div class="totalLabel">{{ $t('Efficient') }}</div>
           <div class="totalNum">${{ InvitationrecordInfo ? InvitationrecordInfo.teamAmount : 0 }}</div>
         </div>
+        <div class="separate"></div>
         <div class="TeamInfoItem">
           <div class="totalLabel">{{ $t('Allteam') }}</div>
           <div class="totalNum">${{ InvitationrecordInfo ? InvitationrecordInfo.allTeamAmount : 0 }}</div>
         </div>
       </div>
       <div class="InviteUrl">
-        {{AddrHandle(inviteUrl , 11 , 11)}}
-        <img src="../assets/Home/copy.png" alt="" />
+        <div class="whoMe">
+          <div class="label">who invited me：</div>
+          <div class="value">{{ AddrHandle(address,6,6) }}</div>
+        </div>
+        <div class="whoMe">
+          <div class="label">My invitation link：</div>
+          <div class="value">{{ AddrHandle(inviteUrl,11,11) }}</div>
+          <img src="../assets/Home/copy.png" alt="" />
+          <div class="Invite">Invite</div>
+        </div>
       </div>
-      <div class="recordList">
-        <div class="recordLabel">{{ $t('Invitationrecord') }}</div>
-        <div class="recordItem superior" >
-          <span class="address">{{InvitationrecordInfo ? AddrHandle(InvitationrecordInfo.refereeUserAddress,6,6)+'（'+$t('InvitePeople')+'）' : ''}}</span>
-          <span>{{InvitationrecordInfo ? dateFormat('YYYY/mm/dd HH:MM:SS',new Date(InvitationrecordInfo.bindTime)) : ''}}</span>
-        </div>
-        <div class="recordItem" v-for="item in invitelist">
-          <span class="address">{{AddrHandle(item.userAddress,6,6)}} <img src="../assets/Home/Rj.png" v-if="item.isPledge === 1" alt=""></span>
-          <span>{{dateFormat('YYYY/mm/dd HH:MM:SS',new Date(item.createTime))}}</span>
-        </div>
+    </div>
+    <div class="recordList">
+      <div class="recordLabel">{{ $t('Invitationrecord') }}</div>
+      <div class="recordItem superior" >
+        <span class="address">{{InvitationrecordInfo ? AddrHandle(InvitationrecordInfo.refereeUserAddress,6,6)+'（'+$t('InvitePeople')+'）' : ''}}</span>
+        <span>{{InvitationrecordInfo ? dateFormat('YYYY/mm/dd HH:MM:SS',new Date(InvitationrecordInfo.bindTime)) : ''}}</span>
+      </div>
+      <div class="recordItem" v-for="item in invitelist">
+        <span class="address">{{AddrHandle(item.userAddress,6,6)}} <img src="../assets/Home/Rj.png" v-if="item.isPledge === 1" alt=""></span>
+        <span>{{dateFormat('YYYY/mm/dd HH:MM:SS',new Date(item.createTime))}}</span>
       </div>
     </div>
   </div>
@@ -88,7 +98,7 @@ watch(
 
 <style lang="scss" scoped>
 .Team {
-  background: linear-gradient(135deg, #2A3D8F 0%, #9037A2 100%);
+  background: #14141E;
   padding-top: 10rem;
   display: flex;
   flex-direction: column;
@@ -116,8 +126,10 @@ watch(
     width: 750px;
     overflow: hidden;
     margin-top: 50px;
-    border-radius: 50px;
-    background: url(../assets/Home/DaoBg.png) no-repeat center 0 / 100%;
+    border-radius: 1.25rem;
+    // background: url(../assets/Home/DaoBg.png) no-repeat center 0 / 100%;
+    background: #151522;
+    border: 1px solid #28283B;
     text-align: center;
     @media (max-width:750px) {
       width: 95%;
@@ -125,20 +137,32 @@ watch(
     .totalNumperformance{
       display: flex;
       justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid #28283B;
+      margin: 0 25px;
+      padding: 0 20px;
+      .separate{
+        height: 65px;
+        border-left: 1px solid #28283B;
+        margin: 0 25px;
+      }
       .TeamInfoItem{
-        width: 30%;
+        flex: 1;
       }
     }
     .totalLabel {
-      font-size: 14px;
-      color: #ffffff;
-      margin-top: 25px;
+      font-size: 16px;
+      color: #767676;
+      margin-top: 38px;
+      text-align: left;
     }
     .totalNum {
-      font-size: 40px;
+      font-size: 35px;
       font-weight: 500;
-      color: #ffffff;
-      margin-top: 7px;
+      color: #6966FF;
+      text-align: left;
+      line-height: 1;
+      margin: 13px 0 34px;
       @media (max-width:768px) {
         font-size: 30px;
       }
@@ -148,19 +172,40 @@ watch(
     }
     .InviteUrl {
       font-weight: 500;
+      margin: 0 25px;
+      padding: 0 20px;
       color: #ffffff;
       font-size: 18px;
-      margin-top: 8px;
-      margin-bottom: 50px;
+      // margin-top: 8px;
+      // margin-bottom: 50px;
+      height: 130px;
       display: flex;
-      align-items: center;
       justify-content: center;
+      flex-direction: column;
+      .whoMe{
+        display: flex;
+        align-items: center;
+        .label{
+          color: #767676;
+          font-size: 16px;
+        }
+        .Invite{
+          font-size: 20px;
+          border-radius: 12px;
+          padding: 8px 50px;
+          background: #6966FF;
+        }
+      }
+      .whoMe:nth-child(1){
+        margin-bottom: 25px;
+      }
       img {
         width: 20px;
         margin-left: 20px;
       }
     }
-    .recordList {
+  }
+  .recordList {
       width: 100%;
       min-height: 500px;
       overflow:auto;
@@ -195,6 +240,5 @@ watch(
         margin-bottom: 26px;
       }
     }
-  }
 }
 </style>

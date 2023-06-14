@@ -1,5 +1,5 @@
 .Rewares,.History{
-    background: linear-gradient(180deg, #330A6A 0%, #A367D3 100%);
+    background:#14141E;
     padding-top: 10rem;
     padding-bottom: 5rem;
     display: flex;
@@ -11,7 +11,7 @@
         padding-top: 20rem;
     }
     .StakeTitle{
-        font-size: 2rem;
+        font-size: 1.8rem;
         line-height: 1;
         font-weight: 500;
         color: #FFFFFF;
@@ -24,24 +24,23 @@
         }
     }
     .Tabs{
-        width: 324px;
+        width: 350px;
         height: 64px;
         background: rgba(255,255,255,0.25);
         border-radius: 32px;
         box-sizing: border-box;
         padding: 5px 7px;
-        margin-top: 20px;
-        margin-bottom: 30px;
+        margin-top: 38px;
         display: flex;
         justify-content: space-between;
         // transform: scale(0.7);
-        @media (max-width:425px) {
+        @media (max-width:500px) {
             width: 226px;
             height: 48px;
         }
         .tabItem{
             cursor: pointer;
-            width: 118px;
+            width: 168px;
             height: 54px;
             color: #FFFFFF;
             border-radius: 32px;
@@ -73,8 +72,10 @@
         // flex: 1;
         width: 750px;
         // background: ;
-        border-radius: 3.25rem;
-        background: url('../Home/REWARDSBg.png') no-repeat center 0 / 100% auto;
+        border-radius: 1.25rem;
+        // background: url('../Home/REWARDSBg.png') no-repeat center 0 / 100% auto;
+        background: #1C1C28;
+        margin-top: 35px;
         @media (max-width:768px) {
             width: 80rem;
         }
@@ -87,11 +88,14 @@
         .InfoRow{
             // height: 10rem;
             width: 100%;
-            padding: 20px 50px;
+            padding: 50px;
+            border-radius: 1.25rem;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            background: #151522;
+            border: 1px solid #28283B;
             @media (max-width:425px) {
                 padding: 10px 15px;
             }
@@ -108,14 +112,25 @@
                 align-items: center;
                 color: #FFFFFF;
                 .headImg{
-                    width: 30px;
-                    height: 30px;
+                    width: 50px;
+                    height: 50px;
                     border-radius: 50%;
                     background: #2446E1;
                     flex-shrink: 0;
                 }
                 .svip{
                     width: 35px;
+                }
+                .Long{
+                    @media (max-width:600px) {
+                        display: none;
+                    }
+                }
+                .short{
+                    display: none;
+                    @media (max-width:600px) {
+                        display: block;
+                    }
                 }
                 span{
                     margin-left: 24px;
@@ -131,18 +146,30 @@
                 display: flex;
                 margin-top: 1.5rem;
                 justify-content: space-between;
+                .Long{
+                    width: max-content;
+                    @media (max-width:600px) {
+                        display: none;
+                    }
+                }
+                .short{
+                    display: none;
+                    @media (max-width:600px) {
+                        display: block;
+                    }
+                }
                 span{
                     display: flex;
                     align-items: center;
                 }
                 .Team{
                     cursor: pointer;
-                    padding:5px 10px;
+                    padding:8px 25px;
                     // width: 4.75rem;
                     // height: 1.5rem;
                     background: #FFFFFF;
                     border-radius: 6px;
-                    border: 1px solid #FFFFFF;
+                    // border: 1px solid #FFFFFF;
                     color: #6A6CFB;
                     @media (max-width:500px) {
                         font-size: 14px;
@@ -156,70 +183,95 @@
                     //     height: 3.5rem;
                     // }
                 }
+                .Invite{
+                    color: #FFFFFF;
+                    background: #6966FF;
+                    border-radius: 12px;
+                    
+                }
             }
         }
         .balance{
-            height: 200px;
+            // height: 200px;
             border-radius: 3.25rem;
-            background: #3E2470;
-            padding: 33px 43px;
+            // background: #3E2470;
+            padding: 30px 25px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             box-sizing: border-box;
-            @media (max-width:425px) {
-                padding: 25px 25px;
+            @media (max-width:500px) {
+                padding: 15px;
             }
             .balanceRow{
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 width: 100%;
+                padding: 0 16px 20px;
+                box-sizing: border-box;
+                border-bottom: 1px solid #28283B;
                 .balanceNum{
+                    display: flex;
                     img{
                         width: 52px;
-                        margin-right: 10px;
+                        margin-right: 24px;
                     }
                     span{
                         color: #FFFFFF;
                         font-size: 20px;
                     }
+                    >div{
+                        display: flex;
+                        flex-direction: column;
+                    }
                     .tokenNum{
-                        margin-left: 14px;
+                        // margin-left: 14px;
+                        color: #6966FF;
+                        font-size: 22px;
                     }
                 }
             }
             .history{
                 display: flex;
-                justify-content: space-around;
+                justify-content: center;
+                padding-top: 30px;
+                .historyItem:nth-child(1){
+                    text-align: right;
+                }
                 .historyItem{
                     display: flex;
                     flex-direction: column;
-                    align-items: center;
                     .Label{
                         font-weight: 400;
-                        color: #D4D4D4;
-                        font-size: 14px;
+                        color: #767676;
+                        font-size: 16px;
                     }
                     .number{
                         font-weight: 500;
-                        color: #FFFFFF;
-                        font-size: 30px;
+                        color: #6966FF;
+                        font-size: 36px;
                     }
+                }
+                .separate{
+                    height: 65px;
+                    border-right: 1px solid #28283B;
+                    margin: 0 45px;
                 }
             }
             .Withdraw{
                 cursor: pointer;
                 font-size: 1rem;
                 font-weight: 400;
-                padding: 5px 10px;
+                padding: 17px 45px;
                 // width: 8.9rem;
                 color: #fff;
                 // height: 2.8rem;
-                background: linear-gradient(360deg, #6A6CFB 0%, #9697FF 100%);
+                background: #6966FF;
                 border-radius: 0.6rem;
                 @media (max-width:500px) {
                     font-size: 14px;
+                    padding: 10px 20px;
                 }
             }
         }
@@ -229,7 +281,7 @@
         justify-content: space-between;
         align-items: center;
         width: 750px;
-        margin: 32px 0 16px;
+        margin: 30px 0 16px;
         @media (max-width:768px) {
             width: 80rem;
         }
@@ -242,7 +294,7 @@
         .labelName{
             font-weight: 500;
             color: #fff;
-            font-size: 30px;
+            font-size: 26px;
             @media (max-width:768px) {
                 font-size: 20px;
             }
@@ -256,9 +308,9 @@
     }
     .RewardBox{
         width: 750px;
-        background: #3E2470;
+        background: #1C1C28;
         box-shadow: 0px 3px 20px 0px rgba(0,0,0,0.1);
-        border-radius: 2.5rem;
+        border-radius: 1.25rem;
         padding: 60px 50px;
         box-sizing: border-box;
         @media (max-width:768px) {

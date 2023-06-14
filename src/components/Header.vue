@@ -141,7 +141,7 @@ onMounted(()=>{
   .HeaderLeft {
     display: flex;
     .Logo{
-      height: 40px;
+      height: 30px;
       @media (max-width:428px) {
         height: 28px;
       }
@@ -162,7 +162,7 @@ onMounted(()=>{
     // background: linear-gradient(360deg, #299FEF 0%, #69C0FA 100%);
     border-radius: 0.55rem;
 
-    font-size: 0.9rem;
+    font-size: 18px;
     line-height: 1rem;
     padding: 1px;
     .content {
@@ -234,10 +234,10 @@ onMounted(()=>{
     }
     .ActiveMenuItem{
       span{
-        color: #00A0E9;
+        color: #6966FF;
       }
       .ActiveBorder{
-        border-bottom: 1px solid #00A0E9;
+        border-bottom: 1px solid #6966FF;
         width: 100%;
       }
     }

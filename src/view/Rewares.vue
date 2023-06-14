@@ -241,6 +241,76 @@ function Withdraw(){
 <template>
   <div class="Rewares">
     <div class="StakeTitle">{{ $t('rewards') }}</div>
+    <div class="RewaresInfo">
+      <div class="InfoRow">
+        <div class="address">
+          <div class="headImg">
+            <img src="" alt="" />
+          </div>
+          <span class="Long">{{ address ? address :'Please link the wallet' }}</span>
+          <span class="short">{{ address ? AddrHandle(address,7,7) :'Please link the wallet' }}</span>
+          <img
+            @click="copyFun(address)"
+            class="copy"
+            src="../assets/Home/copy.png"
+            alt=""
+          />
+          <img src="../assets/Home/SVIP.png" class="svip" v-if="svipLevel" alt="" />
+        </div>
+        <div class="link">
+          <span class="Long">
+            {{ AddrHandle(InviteUrl,20,20) }}
+            <img
+                src="../assets/Home/copy.png"
+                @click="copyFun(InviteUrl)"
+                alt=""
+            />
+          </span>
+          <span class="short">
+            {{ AddrHandle(InviteUrl,11,11) }}
+            <img
+                src="../assets/Home/copy.png"
+                @click="copyFun(InviteUrl)"
+                alt=""
+            />
+          </span>
+          <!-- <span
+              >
+              {{ AddrHandle(InviteUrl,11,11) }}
+              <img
+                  src="../assets/Home/copy.png"
+                  @click="copyFun(InviteUrl)"
+                  alt=""
+              />
+          </span> -->
+          <div v-if="isBind === 0" class="Team Invite flexCenter" @click="centerDialogVisible = true">{{ $t('Invite') }} </div>
+          <div v-else class="Team flexCenter" @click="goPath('/Team')">{{ $t('team') }} </div>
+        </div>
+      </div>
+      <div class="balance">
+        <div class="balanceRow">
+          <div class="balanceNum">
+            <img src="../assets/Home/logo.svg" alt="">
+            <div>
+              <span class="tokenName">dYdX </span>
+              <span class="tokenNum">$ {{ amount ? amount : 0 }}</span>
+            </div>
+          </div>
+          <div class="Withdraw flexCenter" @click="WithdrawVisible = true">{{ $t('Withdraw') }}</div>
+        </div>
+        <div class="history">
+          <div class="historyItem">
+            <span class="Label">{{ $t('RewardTotal') }}</span>
+            <span class="number">$ {{ rewardTotalAmount }}</span>
+          </div>
+          <div class="separate"></div>
+          <div class="historyItem">
+            <span class="Label">{{ $t('StakeTotal') }}</span>
+            <span class="number">$ {{ stakeTotalAmount }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="Tabs">
       <div
         class="tabItem flexCenter"
@@ -255,55 +325,6 @@ function Withdraw(){
         @click="tabVal = 'Record'"
       >
         {{ $t('Record') }}
-      </div>
-    </div>
-    <div class="RewaresInfo">
-      <div class="InfoRow">
-        <div class="address">
-          <div class="headImg">
-            <img src="" alt="" />
-          </div>
-          <span>{{ address ? AddrHandle(address,7,7) :'Please link the wallet' }}</span>
-          <img
-            @click="copyFun(address)"
-            class="copy"
-            src="../assets/Home/copy.png"
-            alt=""
-          />
-          <img src="../assets/Home/SVIP.png" class="svip" v-if="svipLevel" alt="" />
-        </div>
-        <div class="link">
-          <span
-            >
-            {{ AddrHandle(InviteUrl,11,11) }}
-            <img
-              src="../assets/Home/copy.png"
-              @click="copyFun(InviteUrl)"
-              alt=""
-          /></span>
-          <div v-if="isBind === 0" class="Team flexCenter" @click="centerDialogVisible = true">{{ $t('Invite') }} </div>
-          <div v-else class="Team flexCenter" @click="goPath('/Team')">{{ $t('team') }} </div>
-        </div>
-      </div>
-      <div class="balance">
-        <div class="balanceRow">
-          <div class="balanceNum">
-            <img src="../assets/Home/logo.svg" alt="">
-            <span class="tokenName">Dydx </span>
-            <span class="tokenNum">{{ amount ? amount : 0 }}</span>
-          </div>
-          <div class="Withdraw flexCenter" @click="WithdrawVisible = true">{{ $t('Withdraw') }}</div>
-        </div>
-        <div class="history">
-          <div class="historyItem">
-            <span class="Label">{{ $t('RewardTotal') }}</span>
-            <span class="number">{{ rewardTotalAmount }}</span>
-          </div>
-          <div class="historyItem">
-            <span class="Label">{{ $t('StakeTotal') }}</span>
-            <span class="number">{{ stakeTotalAmount }}</span>
-          </div>
-        </div>
       </div>
     </div>
     <template v-if="tabVal === 'Reward'">
