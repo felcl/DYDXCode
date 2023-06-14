@@ -195,7 +195,7 @@ onMounted(()=>{
       <div class="totalNetwork">
         <div class="totalItem">
           <div class="label">{{ $t('Totalofthe') }}</div>
-          <div class="number">{{ NumSplic(totalRewardAmount,2,true) }}</div>
+          <div class="number">$ {{ NumSplic(totalRewardAmount,2,true) }}</div>
         </div>
         <div class="separate"></div>
         <div class="totalItem">
@@ -206,10 +206,10 @@ onMounted(()=>{
       <div class="Increase">
         <div class="Left">
           <div class="Icon">
-            <img src="../assets/Home/logo.svg" alt="" />
+            <img src="../assets/Home/SubLogo.png" alt="" />
           </div>
           <div>
-            <div class="name">Dydx</div>
+            <div class="name">dYdx</div>
             <div class="priceInfo">
               <span class="price">$ {{ arbPrice }}</span>
               <span class="pro">{{ arbRate }}%</span>
@@ -265,7 +265,7 @@ onMounted(()=>{
 
 <style lang="scss" scoped>
 .Stake {
-  background: linear-gradient(180deg, #330A6A 0%, #A367D3 100%);
+  // background:#14141E;
   min-height: 100vh;
   padding-top: 10rem;
   padding-bottom: 50px;
@@ -295,17 +295,31 @@ onMounted(()=>{
     }
   }
   .StakeItem {
-    background: url("../assets/Home/DaoBg.png") no-repeat center 0 / 100%;
+    background: #151522;
+    border: 1px solid #28283B;
+    display: flex;
+    flex-direction: column;
+    width: 750px;
+    // background: #00b3ff;
+    border-radius: 1.25rem;
+    margin: 20px auto 0;
+    @media (max-width: 1024px) {
+      width: 95%;
+      margin: 20px auto;
+    }
     .totalNetwork {
       display: flex;
       justify-content: space-between;
       // align-items: center;
-      margin: 80px 67px 70px;
+      margin: 20px 25px 48px;
+      padding:55px 42px ;
+      border-bottom: 1px solid #28283B;
       @media (max-width: 768px) {
-        margin: 40px 33px 35px;
+        margin: 40px 0 35px;
+        padding:55px 20px ;
       }
       @media (max-width:428px) {
-        margin: 25px 20px 20px;
+        margin: 25px 0 20px;
       }
       .totalItem {
         flex: 1;
@@ -314,18 +328,18 @@ onMounted(()=>{
         justify-content:space-between;
         .label {
           font-weight: 400;
-          color: #e0f1ff;
-          font-size: 20px;
-          margin-bottom: 36px;
+          color: #767676;
+          font-size: 16px;
+          // margin-bottom: 10px;
           @media (max-width:500px) {
-            font-size: 16px;
-            margin-bottom: 18px;
+            // font-size: 16px;
+            // margin-bottom: 18px;
           }
         }
         .number {
-          font-size: 40px;
+          font-size: 36px;
           font-weight: 600;
-          color: #ffffff;
+          color: #6966FF;
           @media (max-width: 768px) {
             font-size: 30px;
           }
@@ -337,25 +351,27 @@ onMounted(()=>{
           }
         }
       }
+      .totalItem:nth-child(3){
+        .label {
+          text-align: right;
+        }
+        .number {
+          text-align: right;
+        }
+      }
       .separate {
-        border-left: 1px solid #fff;
+        border-left: 1px solid #28283B;
         height: 66px;
         margin: 0 50px;
         align-self: center;
+        @media (max-width: 768px) {
+          margin: 0 20px;
+        }
       }
     }
-    display: flex;
-    flex-direction: column;
-    width: 750px;
-    // background: #00b3ff;
-    border-radius: 2.5rem;
-    margin: 20px auto 0;
-    @media (max-width: 1024px) {
-      width: 95%;
-      margin: 20px auto;
-    }
+    
     .Increase {
-      margin: 0 67px 84px;
+      margin: 0 67px 66px;
       display: flex;
       justify-content: space-between;
       @media (max-width: 768px) {
@@ -370,13 +386,13 @@ onMounted(()=>{
         .name {
           font-weight: 600;
           color: #ffffff;
-          font-size: 20px;
+          font-size: 18px;
           @media (max-width:500px) {
             font-size: 12px;
           }
         }
         .price {
-          font-weight: 400;
+          font-weight: bold;
           color: #ffffff;
           font-size: 20px;
           @media (max-width:500px) {
@@ -387,7 +403,7 @@ onMounted(()=>{
           color: #49de3d;
           font-weight: 600;
           font-size: 20px;
-          margin-left: 25px;
+          margin-left: 20px;
           @media (max-width:500px) {
             font-size: 12px;
           }
@@ -404,16 +420,17 @@ onMounted(()=>{
           }
       }
       .Icon {
-        width: 52px;
-        margin-right: 28px;
+        width: 60px;
+        margin-right: 20px;
         border-radius: 50%;
+        display: flex;
+        align-items: center;
         // background: #ff0000;
         img{
           width: 100%;
         }
         @media (max-width: 768px) {
           width: 35px;
-          height: 35px;
         }
       }
     }
@@ -421,11 +438,11 @@ onMounted(()=>{
 
   .subscribe {
     width: 750px;
-    margin: 20px auto 0;
+    margin: 0 auto;
     padding: 70px 80px 50px;
     box-sizing: border-box;
-    border-radius: 2.5rem;
-    background: #3E2470;
+    border-radius: 1.25rem;
+    background: #1C1C28;
     box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.1);
     @media (max-width: 768px) {
       padding: 35px 40px 25px;
@@ -435,7 +452,7 @@ onMounted(()=>{
     }
     @media (max-width: 1024px) {
       width: 100%;
-      margin: 20px auto;
+      margin: 20px auto 0;
     }
     .subscribeTitle {
       font-weight: 500;
@@ -475,14 +492,14 @@ onMounted(()=>{
         margin-right: 0;
       }
       .Active {
-        background: linear-gradient(360deg, #6A6CFB 0%, #9697FF 100%);
+        background: #6966FF;
         border: none;
         color: #ffffff;
       }
     }
     .Submit {
       cursor: pointer;
-      background: linear-gradient(360deg, #6A6CFB 0%, #9697FF 100%);
+      background: #6966FF;
       height: 56px;
       border-radius: 12px;
       margin: 40px auto 20px;

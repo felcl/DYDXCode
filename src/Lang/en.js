@@ -1,7 +1,7 @@
 const en = {
     "Home": "Home",
     "DAO": "DAO",
-    "rewards": "rewards",
+    "rewards": "REWARDS",
     "Connectwallet": "Connect wallet",
     "DydxFoundationFor": "Dydx Foundation For Staked Tokens",
     "Simplifiedandsecure": "Simplified and secure participation in staking",
@@ -53,7 +53,7 @@ const en = {
     "Pleaseauthorize": "Please authorize",
     "Pledgesuccessful": "Pledge successful",
     "ReplicatingSuccess": "Replicating Success",
-    "Pleaseenterthe1": "Please enter the invitation address",
+    "Pleaseenterthe2": "Please enter the invitation address",
     "Bindingsuccessful": "Binding successful",
     "Bindingfailed": "Binding failed",
     "Pleasedonot1": "Please do not resubmit",

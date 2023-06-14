@@ -53,7 +53,7 @@ const kr = {
     "Pledgesuccessful": "서약 성공",
     "ReplicatingSuccess": "성공적으로 복사",
     "Pleaseenterthe1": "초대 주소를 입력하세요.",
-    "Pleaseenterthe1": "인출 수량을 입력하십시오",
+    "Pleaseenterthe2": "인출 수량을 입력하십시오",
     "Bindingsuccessful": "성공적으로 묶다",
     "Bindingfailed": "바인딩 실패",
     "Pleasedonot1": "다시 제출하지 마십시오",

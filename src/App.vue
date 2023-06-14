@@ -97,7 +97,7 @@ function bind(){
 }
 onMounted(async()=>{
   document.body.style.setProperty('--el-border-radius-small', '20px')
-  document.body.style.setProperty('--el-bg-color', '#3E2470')
+  document.body.style.setProperty('--el-bg-color', '#303044')
   document.body.style.setProperty('--el-text-color-primary', '#fff')
   document.body.style.setProperty('--message-color', '#ccc')
   setDialogWidth()
@@ -154,6 +154,9 @@ onMounted(async()=>{
 
 <template>
     <Layout></Layout>
+    <div class="bgvideo">
+      <video src="./assets/video/wave.webm" preload="auto" autoplay loop disablepictureinpicture playsinline muted></video>
+    </div>
     <el-dialog v-model="InviteDialogVisible" :title="$t('Invite')" :width="dialogWidth" :show-close="false" :close-on-click-modal="false" center :close-on-press-escape="false">
       <input class="InvitationInput" :placeholder="$t('Pleaseenterthe')" v-model="InvitationLink" type="text">
       <div class="enter" @click="bind">{{ $t('Confirm') }}</div>
@@ -161,6 +164,16 @@ onMounted(async()=>{
 </template>
 
 <style lang="scss" scoped>
+.bgvideo{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 100px;
+  video{
+    width: 100%;
+    height: 100%;
+  }
+}
 .enter{
   width: 100%;
   height: 46px;

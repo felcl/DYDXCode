@@ -50,7 +50,7 @@ function goPath(path){
 
 <style lang="scss" scoped>
 .Record{
-    background: linear-gradient(135deg, #2A3D8F 0%, #9037A2 100%);
+    // background: linear-gradient(135deg, #2A3D8F 0%, #9037A2 100%);
     padding-top: 10rem;
     display: flex;
     flex-direction: column;
@@ -84,7 +84,7 @@ function goPath(path){
         box-sizing: border-box;
         // height: 808px;
         box-shadow: 0px 3px 20px 0px rgba(0,0,0,0.1);
-        background: #3E2470;
+        background: #28283B;
         width: 750px;
         margin-top: 20px;
         @media (max-width:800px) {

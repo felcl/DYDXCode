@@ -1,5 +1,8 @@
 <script setup>
 import "../assets/style/Rewares.scss";
+import SVIP1 from '../assets/Home/SVIP1.png'
+import SVIP2 from '../assets/Home/SVIP2.png'
+import SVIP3 from '../assets/Home/SVIP3.png'
 import { AddrHandle , GetQueryString , dateFormat} from "../utils/tool";
 import {useRouter,useRoute} from 'vue-router'
 import { ElNotification } from 'element-plus'
@@ -35,7 +38,8 @@ const amount = ref(0);
 const goPath=(path)=>{
   router.push(path)
 }
-let dialogWidth = ref("550px")
+let SVIPIcon = [,SVIP1,SVIP2,SVIP3]
+let dialogWidth = ref("680px")
 const address = computed(() => {
   return store.state.address;
 });
@@ -51,7 +55,7 @@ onMounted(()=>{
 })
 let setDialogWidth = (()=>{
   let val = document.body.clientWidth
-  const def = 550 // 默认宽度
+  const def = 680 // 默认宽度
   if (val < def) {
     dialogWidth.value = '98%'
   } else {
@@ -153,7 +157,7 @@ function bind(){
   if(!InvitationLink.value){
     return ElNotification({
         title: 'Warning',
-        message: $t('Pleaseenterthe1'),
+        message: $t('Pleaseenterthe2'),
         type: 'warning',
     })
   }
@@ -241,6 +245,76 @@ function Withdraw(){
 <template>
   <div class="Rewares">
     <div class="StakeTitle">{{ $t('rewards') }}</div>
+    <div class="RewaresInfo">
+      <div class="InfoRow">
+        <div class="address">
+          <div class="headImg">
+            <img src="" alt="" />
+          </div>
+          <span class="Long">{{ address ? address :'Please link the wallet' }}</span>
+          <span class="short">{{ address ? AddrHandle(address,7,7) :'Please link the wallet' }}</span>
+          <img
+            @click="copyFun(address)"
+            class="copy"
+            src="../assets/Home/copy.png"
+            alt=""
+          />
+          <img :src="SVIPIcon[svipLevel]" class="svip" v-if="svipLevel" alt="" />
+        </div>
+        <div class="link">
+          <span class="Long">
+            {{ AddrHandle(InviteUrl,20,20) }}
+            <img
+                src="../assets/Home/copy.png"
+                @click="copyFun(InviteUrl)"
+                alt=""
+            />
+          </span>
+          <span class="short">
+            {{ AddrHandle(InviteUrl,11,11) }}
+            <img
+                src="../assets/Home/copy.png"
+                @click="copyFun(InviteUrl)"
+                alt=""
+            />
+          </span>
+          <!-- <span
+              >
+              {{ AddrHandle(InviteUrl,11,11) }}
+              <img
+                  src="../assets/Home/copy.png"
+                  @click="copyFun(InviteUrl)"
+                  alt=""
+              />
+          </span> -->
+          <div v-if="isBind === 0" class="Team Invite flexCenter" @click="centerDialogVisible = true">{{ $t('Invite') }} </div>
+          <div v-else class="Team flexCenter" @click="goPath('/Team')">{{ $t('team') }} </div>
+        </div>
+      </div>
+      <div class="balance">
+        <div class="balanceRow">
+          <div class="balanceNum">
+            <img src="../assets/Home/SubLogo.png" alt="">
+            <div>
+              <span class="tokenName">dYdX </span>
+              <span class="tokenNum">$ {{ amount ? amount : 0 }}</span>
+            </div>
+          </div>
+          <div class="Withdraw flexCenter" @click="WithdrawVisible = true">{{ $t('Withdraw') }}</div>
+        </div>
+        <div class="history">
+          <div class="historyItem">
+            <span class="Label">{{ $t('RewardTotal') }}</span>
+            <span class="number">$ {{ rewardTotalAmount }}</span>
+          </div>
+          <div class="separate"></div>
+          <div class="historyItem">
+            <span class="Label">{{ $t('StakeTotal') }}</span>
+            <span class="number">$ {{ stakeTotalAmount }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="Tabs">
       <div
         class="tabItem flexCenter"
@@ -255,55 +329,6 @@ function Withdraw(){
         @click="tabVal = 'Record'"
       >
         {{ $t('Record') }}
-      </div>
-    </div>
-    <div class="RewaresInfo">
-      <div class="InfoRow">
-        <div class="address">
-          <div class="headImg">
-            <img src="" alt="" />
-          </div>
-          <span>{{ address ? AddrHandle(address,7,7) :'Please link the wallet' }}</span>
-          <img
-            @click="copyFun(address)"
-            class="copy"
-            src="../assets/Home/copy.png"
-            alt=""
-          />
-          <img src="../assets/Home/SVIP.png" class="svip" v-if="svipLevel" alt="" />
-        </div>
-        <div class="link">
-          <span
-            >
-            {{ AddrHandle(InviteUrl,11,11) }}
-            <img
-              src="../assets/Home/copy.png"
-              @click="copyFun(InviteUrl)"
-              alt=""
-          /></span>
-          <div v-if="isBind === 0" class="Team flexCenter" @click="centerDialogVisible = true">{{ $t('Invite') }} </div>
-          <div v-else class="Team flexCenter" @click="goPath('/Team')">{{ $t('team') }} </div>
-        </div>
-      </div>
-      <div class="balance">
-        <div class="balanceRow">
-          <div class="balanceNum">
-            <img src="../assets/Home/logo.svg" alt="">
-            <span class="tokenName">Dydx </span>
-            <span class="tokenNum">{{ amount ? amount : 0 }}</span>
-          </div>
-          <div class="Withdraw flexCenter" @click="WithdrawVisible = true">{{ $t('Withdraw') }}</div>
-        </div>
-        <div class="history">
-          <div class="historyItem">
-            <span class="Label">{{ $t('RewardTotal') }}</span>
-            <span class="number">{{ rewardTotalAmount }}</span>
-          </div>
-          <div class="historyItem">
-            <span class="Label">{{ $t('StakeTotal') }}</span>
-            <span class="number">{{ stakeTotalAmount }}</span>
-          </div>
-        </div>
       </div>
     </div>
     <template v-if="tabVal === 'Reward'">
@@ -342,7 +367,7 @@ function Withdraw(){
       <div class="RewardBox">
         <div class="total">
           <div class="label">{{ $t('Cumulativewithdrawal') }}</div>
-          <div class="totalNum">{{ WithdrawalTotal }}</div>
+          <div class="totalNum">$ {{ WithdrawalTotal }}</div>
         </div>
         <template v-if="Withdrawallist.length !==0">
           <div class="RewardRow" v-for="item in Withdrawallist">
@@ -371,12 +396,12 @@ function Withdraw(){
         <el-empty v-else description="description" />
       </div>
     </template>
-    <el-dialog v-model="centerDialogVisible" :title="$t('Invite')" :width="dialogWidth" center :close-on-press-escape="false">
+    <el-dialog v-model="centerDialogVisible" :title="$t('Invite')" :width="dialogWidth" custom-class="InviteDialog" center :close-on-press-escape="false">
       <input class="InvitationInput" :placeholder="$t('Pleaseenterthe')" v-model="InvitationLink" type="text">
       <div class="enter" @click="bind">{{ $t('Confirm') }}</div>
     </el-dialog>
-    <el-dialog v-model="WithdrawVisible" :title="$t('Withdraw')" :width="dialogWidth" center :close-on-press-escape="false">
-        <div class="balanceLabel">{{$t('Balance')}}：{{ amount }}</div>
+    <el-dialog v-model="WithdrawVisible" :title="$t('Withdraw')" :width="dialogWidth" custom-class="WithdrawDialog" center :close-on-press-escape="false">
+        <div class="balanceLabel">{{$t('Balance')}}：$ {{ amount }}</div>
         <div class="InvitationInput">
             <input :placeholder="$t('Pleaseenterthe1')" @input="changeNumPut" v-model="WithdrawAmount" type="text">
             <span @click="WithdrawAmount = amount">MAX</span>
@@ -392,27 +417,29 @@ function Withdraw(){
 </template>
 <style scoped lang="scss">
 .balanceLabel{
-    color: #fff;
-    font-size: 12px;
+    color: #6966FF;
+    font-size: 20px;
     margin-bottom: 12px;
+    padding: 0 16px;
 }
-.InvitationInput{
-    width: 100%;
-    height: 46px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 14px;
-    border: none;
-    outline: none;
-    padding: 0 25px;
-    box-sizing: border-box;
-    color: #D4D4D4;
-}
+// .InvitationInput{
+//     width: 100%;
+//     height: 46px;
+//     background: rgba(255,255,255,0.1);
+//     border-radius: 14px;
+//     border: none;
+//     outline: none;
+//     padding: 0 25px;
+//     box-sizing: border-box;
+//     color: #D4D4D4;
+// }
 .enter{
-  width: 100%;
-  height: 46px;
-  background: linear-gradient(360deg, #6A6CFB 0%, #9697FF 100%);
+  width: 180px;
+  margin: auto;
+  height: 60px;
+  background: #6966FF;
   border-radius: 12px;
-  margin-top: 30px;
+  margin-top: 32px;
   color: #FFFFFF;
   font-size: 20px;
   display: flex;
@@ -457,8 +484,8 @@ circle {
 }
 .InvitationInput{
     width: 100%;
-    height: 46px;
-    background: rgba(255,255,255,0.1);
+    height: 56px;
+    background: #14141E;
     border-radius: 14px;
     border: none;
     outline: none;
@@ -468,6 +495,8 @@ circle {
     align-items: center;
     span{
         color: #fff;
+        font-size: 18px;
+        text-decoration: underline;
     }
     input{
         flex: 1;
@@ -475,12 +504,14 @@ circle {
         outline: none;
         height: 100%;
         background: none;
-        color: #fff;
+        color: #B3B3B3;
     }
 }
 .prompt{
     font-size: 12px;
     color: #fff;
+    padding: 0 16px;
+    margin-top: 15px;
 }
 .el-empty__image{
   opacity: 0.4;

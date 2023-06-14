@@ -53,7 +53,7 @@ const zh = {
     "Pleaseauthorize": "請授權",
     "Pledgesuccessful": "質押成功",
     "ReplicatingSuccess": "複製成功",
-    "Pleaseenterthe1": "請輸入邀請地址",
+    "Pleaseenterthe2": "請輸入邀請地址",
     "Bindingsuccessful": "綁定成功",
     "Bindingfailed": "綁定失敗",
     "Pleasedonot1": "請不要重新提交",

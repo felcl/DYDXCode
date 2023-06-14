@@ -26,18 +26,23 @@ function goPath(path){
           {{ $t("Simplifiedandsecure") }}
         </div>
         <span class="StakeBtn flexCenter" @click="goPath('/Dao')">{{$t('stakenow')}}</span>
-        <div class="totalRow">
-          <div class="TotalItem">
-            <div class="totalLabel">{{$t('Totalstakedtokens')}}</div>
-            <div class="totalValue" v-if="Info">${{ Info.totalPledgeAmount }}</div>
+        <div class="totalRowBox">
+          <div class="filter">
+
           </div>
-          <div class="TotalItem">
-            <div class="totalLabel">{{$t('Totalrewardspaid')}}</div>
-            <div class="totalValue" v-if="Info">${{ Info.totalReward }}</div>
-          </div>
-          <div class="TotalItem dn425">
-            <div class="totalLabel">{{$t('TotalTreasury')}}</div>
-            <div class="totalValue" v-if="Info">${{ Info.nationalAmount }}</div>
+          <div class="totalRow">
+            <div class="TotalItem">
+              <div class="totalLabel">{{$t('Totalstakedtokens')}}</div>
+              <div class="totalValue" v-if="Info">${{ Info.totalPledgeAmount }}</div>
+            </div>
+            <div class="TotalItem">
+              <div class="totalLabel">{{$t('Totalrewardspaid')}}</div>
+              <div class="totalValue" v-if="Info">${{ Info.totalReward }}</div>
+            </div>
+            <div class="TotalItem dn425">
+              <div class="totalLabel">{{$t('TotalTreasury')}}</div>
+              <div class="totalValue" v-if="Info">${{ Info.nationalAmount }}</div>
+            </div>
           </div>
         </div>
         <!-- <div class="FriendlyLinks">
@@ -63,9 +68,9 @@ function goPath(path){
         <div class="publicizeMain">
           <div class="Icon">
             <div class="iconBox">
-              <img src="../assets/Home/MenuIcon.png" alt="">
+              <img src="../assets/Home/SubLogo.png" alt="">
             </div>
-            <span>Dydx</span>
+            <div class="IconName">dYdX</div>
           </div>
           <div class="Info">
             <div class="text">
@@ -94,9 +99,9 @@ function goPath(path){
         <div class="publicizeMain">
           <div class="Icon">
             <div class="iconBox">
-              <img src="../assets/Home/MenuIcon.png" alt="">
+              <img src="../assets/Home/SubLogo.png" alt="">
             </div>
-            <span>Dydx</span>
+            <div class="IconName">dYdX</div>
           </div>
           <div class="Info">
             <div class="text">
@@ -122,22 +127,17 @@ function goPath(path){
         <div class="CenterSubTitle">
           {{ $t('Learnmoreabout') }}
         </div>
-        <a href="https://t.me/DydxDao" target="_blank">
-          <div class="joinBanner">
-            <img src="../assets/Home/Telegram.png" alt="">
-              <div>
-                <div class="bannerMain">DYDX in Telegram</div>
-                <div class="bannerSub">{{ $t('Joinchat') }}</div>
-              </div>
-            <!-- <img src="../assets/Home/book.png" alt="">
-              <div>
-                <div class="bannerMain">{{ $t('DYDXinTwitter') }}</div>
-                <div class="bannerSub">{{ $t('Follow') }} @XXXXXX</div>
-              </div> -->
-          </div>
-        </a>
-        <!-- <div class="contactRow">
-          <div class="contactItem">
+        <!-- <div class="joinBanner">
+          <img src="../assets/Home/book.png" alt="">
+            <div>
+              <div class="bannerMain">{{ $t('DYDXinTwitter') }}</div>
+              <div class="bannerSub">{{ $t('Follow') }} @XXXXXX</div>
+            </div>
+        </div> -->
+        <div class="contactRow">
+          <div class="contactItemBox">
+            <div class="filter"></div>
+            <div class="contactItem">
                 <div class="icon">
                     <img src="../assets/Home/Telegram.png" alt="" />
                 </div>
@@ -146,7 +146,10 @@ function goPath(path){
                     <div class="subTitle">{{ $t('Joinchat') }}</div>
                 </div>
             </div>
+          </div>
             <div class="separate"></div>
+          <div class="contactItemBox">
+            <div class="filter"></div>
             <div class="contactItem">
                 <div class="icon">
                     <img src="../assets/Home/Discord.png" alt="" />
@@ -156,24 +159,28 @@ function goPath(path){
                     <div class="subTitle">{{ $t('Jointhecommunity') }}</div>
                 </div>
             </div>
-        </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="foot">
+        Copyright©dYdXDAO
       </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.bgColor {
-  background: #9C62CD;
-}
+// .bgColor {
+//   background: #9C62CD;
+// }
 .Home {
-  background: url("../assets/Home/bg.png") 0 0 / 100% no-repeat;
+  // background: url("../assets/Home/bg.png") 0 0 / 100% no-repeat;
   min-height: 100vh;
   padding-top: 12.7rem;
-  padding-bottom: 12.7rem;
+  padding-bottom: 6rem;
   overflow: hidden;
   @media (max-width:428px) {
-    background: url("../assets/Home/h5bg.png") 0 0 / 100% no-repeat;
+    // background: url("../assets/Home/h5bg.png") 0 0 / 100% no-repeat;
   }
   .firstScreen {
     box-sizing: border-box;
@@ -189,6 +196,7 @@ function goPath(path){
       line-height: 1;
       color: #ffffff;
       font-weight: bold;
+      text-align: center;
       @media (max-width: 428px) {
         font-size: 5rem;
         text-align: center;
@@ -203,7 +211,8 @@ function goPath(path){
       font-size: 1.2rem;
       line-height: 1;
       color: #ffffff;
-      margin-top: 2.8rem;
+      margin-top: 0.5rem;
+      text-align: center;
       @media (max-width: 1440px) {
         font-size: 2rem;
       }
@@ -222,7 +231,7 @@ function goPath(path){
       padding: 0.9rem 3.1rem;
       background: linear-gradient(360deg, #6A6CFB 0%, #9697FF 100%);
       border-radius: 11px;
-      margin-top: 2.5rem;
+      margin: 2.85rem auto 0;
       font-weight: 500;
       color: #FFFFFF;
       font-size: 18px;
@@ -232,11 +241,37 @@ function goPath(path){
         height: 38px;
       }
     }
+    .totalRowBox{
+      max-width: 1200px;
+      height: 170px;
+      margin: 5.4rem auto 6.5rem;
+      position: relative;
+      @media (max-width:800px) {
+        height: 120px;
+        // flex-direction:column;
+      }
+      .filter{
+        border-radius: 25px;
+        width: 100%;
+        height: 100%;
+        background: #6966FF;
+        filter: blur(5px);
+        position: absolute;
+      }
+    }
     .totalRow {
+      position: relative;
+      border-radius: 25px;
+      width: 100%;
+      z-index: 10;
+      height: 100%;
       display: flex;
-      margin: 9rem 0 6.5rem;
+      align-items: center;
       justify-content: space-around;
-      @media (max-width:428px) {
+      border: 1px solid #28283B;
+      background: #12121E;
+      @media (max-width:800px) {
+        height: 120px;
         // flex-direction:column;
       }
       .dn425{
@@ -245,9 +280,10 @@ function goPath(path){
         }
       }
       .TotalItem {
+        flex: 1 ;
         text-align: center;
         @media (max-width:428px) {
-          margin-bottom: 16px;
+          // margin-bottom: 16px;
         }
         .totalLabel {
           color: #ffffff;
@@ -295,7 +331,7 @@ function goPath(path){
     font-size: 14px;
     line-height: 1;
     // text-transform: uppercase;
-    color: #ffffff;
+    color: #767676;
     text-align: center;
     padding: 0 16px;
     box-sizing: border-box;
@@ -303,10 +339,12 @@ function goPath(path){
   .publicize {
     width: 43.9rem;
     // min-height: 21.65rem;
-    background: #3E2470;
-    border-radius: 1.4rem;
-    margin: 50px auto 0;
+    background: #1C1C28;
+    border-radius: 1.25rem;
+    margin: 33px auto 0;
     overflow: hidden;
+    box-shadow: inset 0px 20px 45px 0px rgba(0, 0, 0, 0.25);
+    border: 10px solid #28283B;
     @media (max-width:1136px) {
       width: 50rem;
     }
@@ -326,13 +364,14 @@ function goPath(path){
     .publicizeMain {
       display: flex;
       align-items: center;
-      padding: 4.75rem 7rem 3.5rem;
+      flex-direction: column;
+      padding: 4.75rem 7rem 1.8rem;
       @media (max-width:428px) {
         flex-direction: column;
         padding: 4.75rem 6rem 3.5rem;
       }
       .Icon {
-        margin-right: 7.25rem;
+        // margin-right: 7.25rem;
         text-align: center;
         @media (max-width:428px) {
             margin-right: 0;
@@ -343,22 +382,24 @@ function goPath(path){
           height: 64px;
           border-radius: 50%;
         }
-        span {
+        .IconName {
           font-weight: 500;
           color: #FFFFFF;
           font-size: 18px;
+          margin-top: 10px;
         }
       }
       .Info {
+        margin-top: 18px;
         .text {
-          color: #EAEAEA;
+          color: #767676;
           font-weight: 500;
           font-size: 14px;
           text-align: center;
         }
         .data {
           display: flex;
-          justify-content: space-between;
+          justify-content: center;
           margin-top: 2.5rem;
           @media (max-width:428px) {
             justify-content: center;
@@ -383,6 +424,7 @@ function goPath(path){
           .separate {
             height: 50px;
             border-left: 1px solid #979797;
+            margin: 0 75px;
           }
           .staked {
             display: flex;
@@ -425,19 +467,24 @@ function goPath(path){
     }
   }
   .join {
-    padding: 58px 0 130px;
+    padding: 58px 0 150px;
     margin-top: 2.5rem;
     @media (max-width:500px) {
       margin-top: 2em;
-      padding: 20px 0 130px;
+      padding: 20px 0 150px;
     }
     .CenterTitle{
         color: #fff;
     }
     .CenterSubTitle{
-        color: #D4D4D4;
         max-width: 53.75rem;
         margin:12px auto 0;
+        @media (max-width:600px) {
+          max-width: 70rem;
+        }
+        @media (max-width:500px) {
+          max-width: 80rem;
+        }
     }
     a{
       text-decoration: none;
@@ -490,10 +537,10 @@ function goPath(path){
         }
     }
     .contactRow{
-        width: 53.75rem;
+        width:53.75rem ;
         display: flex;
         justify-content: space-between;
-        margin: auto;
+        margin:2.2rem auto 0;
         @media (max-width:768px) {
           width: 65rem;
           flex-direction: column;
@@ -504,18 +551,42 @@ function goPath(path){
         @media (max-width:375px) {
           width: 80rem;
         }
+        .contactItemBox{
+          position: relative;
+          height: 8rem;
+          flex: 1;
+          @media (max-width:768px) {
+            height: 10rem;
+            margin-bottom: 20px;
+          }
+          @media (max-width:600px) {
+            height: 12rem;
+          }
+          .filter{
+            border-radius: 1.4rem;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #14141E;
+            border: 1px solid #1DA1F2;
+            filter: blur(10px);
+            // opacity: 0.5;
+          }
+        }
         .contactItem{
-            height: 8rem;
+          position: relative;
+            z-index:10;
+            height: 100%;
             flex: 1;
             box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.15);
+            border: 1px solid #1DA1F2;
             border-radius: 1.4rem;
-            background: #3E2470;
+            // background: #3E2470;
             padding: 2.5rem 2rem 2.5rem;
             box-sizing: border-box;
             display: flex;
             align-items: center;
             @media (max-width:768px) {
-                margin-bottom: 20px;
                 padding: 3rem 2rem 3rem;
             }
             .icon{
@@ -553,6 +624,15 @@ function goPath(path){
             width: 2rem;
         }
     }
+  }
+  .foot{
+    width: 100%;
+    text-align: center;
+    border-top: 0.3px solid #343434;
+    padding-top: 17px;
+    color: #343434;
+    font-size: 14px;
+    letter-spacing: 0.02em;
   }
 }
 </style>

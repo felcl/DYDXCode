@@ -172,7 +172,7 @@ onMounted(()=>{
 .Tabs{
         width: 420px;
         height: 64px;
-        background: rgba(255,255,255,0.25);
+        background: #28283B;
         border-radius: 32px;
         box-sizing: border-box;
         padding: 5px 7px;
@@ -198,12 +198,12 @@ onMounted(()=>{
             }
         }
         .active{
-            background: #6A6CFB;
+            background: #6966FF;
             color: #fff;
         }
     }
 .Reward{
-    background: linear-gradient(135deg, #2A3D8F 0%, #9037A2 100%);
+    // background: #14141E;
     padding-top: 10rem;
     display: flex;
     flex-direction: column;
@@ -246,10 +246,10 @@ onMounted(()=>{
     .RewardBox{
         width: 750px;
         // margin: auto;
-        background: #3E2470;
+        background: #28283B;
         box-shadow: 0px 3px 20px 0px rgba(0,0,0,0.1);
-        border-radius: 2.5rem;
-        padding: 50px;
+        border-radius: 1.25rem;
+        padding:24px 50px;
         box-sizing: border-box;
         position: relative;
         @media (max-width:768px) {

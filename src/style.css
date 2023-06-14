@@ -10,9 +10,7 @@
   font-family: SiYuan !important;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -22,7 +20,7 @@
 body{
   margin: 0;
   padding: 0;
-
+  background: #14141E;
 }
 
 .el-empty__image{
