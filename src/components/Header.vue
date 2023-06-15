@@ -167,6 +167,7 @@ onMounted(()=>{
     padding: 1px;
     .content {
       color: #6A6CFB;
+      font-family: PingFang-Bold;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -206,6 +207,7 @@ onMounted(()=>{
       flex-direction: column;
       justify-content: center;
       margin-right: 3.2rem;
+      font-family: PingFang-Regular;
       cursor: pointer;
       img {
         width: 18px;
@@ -235,6 +237,7 @@ onMounted(()=>{
     .ActiveMenuItem{
       span{
         color: #6966FF;
+        font-family: PingFang-Bold;
       }
       .ActiveBorder{
         border-bottom: 1px solid #6966FF;

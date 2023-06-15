@@ -168,10 +168,21 @@ onMounted(async()=>{
   position: fixed;
   width: 100%;
   height: 100vh;
-  top: 100px;
+  top: 0;
+  @media (max-width:700px) {
+    width: 200%;
+    height: 200vh;
+    top: -50%;
+    left: -50%;
+    // transform: translate(0,0);
+  }
   video{
     width: 100%;
     height: 100%;
+    object-fit:fill;
+    @media (max-width:600px) {
+      object-fit:none;
+    }
   }
 }
 .enter{

@@ -31,15 +31,15 @@ function goPath(path){
 
           </div>
           <div class="totalRow">
-            <div class="TotalItem">
+            <div class="TotalItem flexCenter">
               <div class="totalLabel">{{$t('Totalstakedtokens')}}</div>
               <div class="totalValue" v-if="Info">${{ Info.totalPledgeAmount }}</div>
             </div>
-            <div class="TotalItem">
+            <div class="TotalItem flexCenter">
               <div class="totalLabel">{{$t('Totalrewardspaid')}}</div>
               <div class="totalValue" v-if="Info">${{ Info.totalReward }}</div>
             </div>
-            <div class="TotalItem dn425">
+            <div class="TotalItem flexCenter dn425">
               <div class="totalLabel">{{$t('TotalTreasury')}}</div>
               <div class="totalValue" v-if="Info">${{ Info.nationalAmount }}</div>
             </div>
@@ -136,30 +136,35 @@ function goPath(path){
         </div> -->
         <div class="contactRow">
           <div class="contactItemBox">
-            <div class="filter"></div>
-            <div class="contactItem">
-                <div class="icon">
-                    <img src="../assets/Home/Telegram.png" alt="" />
-                </div>
-                <div class="Title">
-                    <div class="mainTitle">Telegram</div>
-                    <div class="subTitle">{{ $t('Joinchat') }}</div>
-                </div>
-            </div>
+            <a href="https://t.me/DydxDao" target="_blank">
+              <div class="filter"></div>
+              <div class="contactItem">
+                  <div class="icon">
+                      <img src="../assets/Home/Telegram.png" alt="" />
+                  </div>
+                  <div class="Title">
+                      <div class="mainTitle">Telegram</div>
+                      <div class="subTitle">{{ $t('Joinchat') }}</div>
+                  </div>
+              </div>
+            </a>
           </div>
-            <div class="separate"></div>
+          <div class="separate"></div>
           <div class="contactItemBox">
-            <div class="filter"></div>
-            <div class="contactItem">
-                <div class="icon">
-                    <img src="../assets/Home/Discord.png" alt="" />
-                </div>
-                <div class="Title">
-                    <div class="mainTitle">Discord</div>
-                    <div class="subTitle">{{ $t('Jointhecommunity') }}</div>
-                </div>
-            </div>
+            <!-- <a href="" target="_blank">
+              <div class="filter"></div>
+              <div class="contactItem">
+                  <div class="icon">
+                      <img src="../assets/Home/Twitter.png" alt="" />
+                  </div>
+                  <div class="Title">
+                      <div class="mainTitle">Twitter</div>
+                      <div class="subTitle">follow @dYdXDAO</div>
+                  </div>
+              </div>
+            </a> -->
           </div>
+          
         </div>
       </div>
       <div class="foot">
@@ -192,10 +197,10 @@ function goPath(path){
     }
     .title {
       font-size: 3.7rem;
-      // font-family: bitte;
+      font-family: OPlusSansBold;
       line-height: 1;
       color: #ffffff;
-      font-weight: bold;
+      // font-weight: bold;
       text-align: center;
       @media (max-width: 428px) {
         font-size: 5rem;
@@ -210,8 +215,9 @@ function goPath(path){
     .subTitle {
       font-size: 1.2rem;
       line-height: 1;
-      color: #ffffff;
+      color: #767676;
       margin-top: 0.5rem;
+      font-family: PingFang-Regular;
       text-align: center;
       @media (max-width: 1440px) {
         font-size: 2rem;
@@ -229,10 +235,10 @@ function goPath(path){
       cursor: pointer;
       width: max-content;
       padding: 0.9rem 3.1rem;
-      background: linear-gradient(360deg, #6A6CFB 0%, #9697FF 100%);
+      background: #6966FF;
       border-radius: 11px;
       margin: 2.85rem auto 0;
-      font-weight: 500;
+      font-family: OPlusSansRegular;
       color: #FFFFFF;
       font-size: 18px;
       @media (max-width: 428px) {
@@ -275,27 +281,35 @@ function goPath(path){
         // flex-direction:column;
       }
       .dn425{
+        border: none;
         @media (max-width:428px) {
           display: none;
         }
       }
       .TotalItem {
         flex: 1 ;
+        flex-direction: column;
+        height: 100%;
         text-align: center;
+        border-right: 1px solid #28283B;
         @media (max-width:428px) {
           // margin-bottom: 16px;
         }
         .totalLabel {
-          color: #ffffff;
+          color: #767676;
           font-size: 14px;
+          font-family: PingFang-Medium;
+          line-height: 1;
           @media (max-width:560px) {
             font-size: 12px;
           }
         }
         .totalValue {
-          font-weight: 500;
+          font-family: PingFang-Bold;
+          line-height: 1;
           color: #ffffff;
           font-size: 30px;
+          margin-top: 20px;
           @media (max-width:768px) {
             font-size: 22px;
           }
@@ -309,6 +323,7 @@ function goPath(path){
   .CenterTitle {
     margin-top: 3.5rem;
     font-size: 1.8rem;
+    font-family: PingFang-Bold; 
     // font-family: bitte;
     line-height: 1;
     color: #FFFFFF;
@@ -328,6 +343,7 @@ function goPath(path){
   }
   .CenterSubTitle {
     margin-top: 12px;
+    font-family: PingFang-Regular;
     font-size: 14px;
     line-height: 1;
     // text-transform: uppercase;
@@ -365,7 +381,7 @@ function goPath(path){
       display: flex;
       align-items: center;
       flex-direction: column;
-      padding: 4.75rem 7rem 1.8rem;
+      padding: 2.2rem 7rem 1.8rem;
       @media (max-width:428px) {
         flex-direction: column;
         padding: 4.75rem 6rem 3.5rem;
@@ -383,7 +399,7 @@ function goPath(path){
           border-radius: 50%;
         }
         .IconName {
-          font-weight: 500;
+          font-family: PingFang-Heavy;
           color: #FFFFFF;
           font-size: 18px;
           margin-top: 10px;
@@ -393,9 +409,9 @@ function goPath(path){
         margin-top: 18px;
         .text {
           color: #767676;
-          font-weight: 500;
           font-size: 14px;
           text-align: center;
+          font-family: PingFang-Regular;
         }
         .data {
           display: flex;
@@ -412,12 +428,13 @@ function goPath(path){
               flex: 1;
             }
             .APRValue {
-              font-weight: 500;
+              font-family: PingFang-Bold; 
               color: #1fb51a;
               font-size: 20px;
             }
             span {
               color: #D4D4D4;
+              font-family: PingFang-Regular;
               font-size: 14px;
             }
           }
@@ -434,12 +451,12 @@ function goPath(path){
               flex: 1;
             }
             .stakedValue {
-              font-weight: 600;
+              font-family: PingFang-Bold; 
               color: #FFFFFF;
               font-size: 20px;
             }
             span {
-              font-weight: 400;
+              font-family: PingFang-Regular;
               color: #D4D4D4;
               font-size: 14px;
             }
@@ -456,7 +473,7 @@ function goPath(path){
       background: #6A6CFB;
       border-radius: 0.5rem;
       margin:0 auto 2.7rem;
-      font-weight: 500;
+      font-family: OPlusSansRegular;
       color: #ffffff;
       @media (max-width:428px) {
         font-size: 18px;
@@ -475,10 +492,12 @@ function goPath(path){
     }
     .CenterTitle{
         color: #fff;
+        font-family: PingFang-Bold; 
     }
     .CenterSubTitle{
         max-width: 53.75rem;
         margin:12px auto 0;
+        font-family: PingFang-Regular;
         @media (max-width:600px) {
           max-width: 70rem;
         }
@@ -545,7 +564,8 @@ function goPath(path){
           width: 65rem;
           flex-direction: column;
         }
-        @media (max-width:428px) {
+        @media (max-width:450px) {
+          margin:37px auto 0;
           width: 75rem;
         }
         @media (max-width:375px) {
@@ -581,6 +601,7 @@ function goPath(path){
             box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.15);
             border: 1px solid #1DA1F2;
             border-radius: 1.4rem;
+            background: url(../assets/Home/dots.svg) no-repeat center center;
             // background: #3E2470;
             padding: 2.5rem 2rem 2.5rem;
             box-sizing: border-box;
@@ -604,14 +625,14 @@ function goPath(path){
             .Title{
                 .mainTitle{
                     font-size: 20px;
-                    font-weight: 500;
+                    font-family: PingFang-Bold; 
                     color: #FFFFFF;
                     @media (max-width:500px) {
                       font-size: 16px;
                     }
                 }
                 .subTitle{
-                    font-weight: 400;
+                  font-family: PingFang-Regular;
                     color: #D4D4D4;
                     font-size: 14px;
                     @media (max-width:500px) {
@@ -628,6 +649,7 @@ function goPath(path){
   .foot{
     width: 100%;
     text-align: center;
+    font-family: PingFang-Regular;
     border-top: 0.3px solid #343434;
     padding-top: 17px;
     color: #343434;

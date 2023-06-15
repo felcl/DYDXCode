@@ -30,8 +30,7 @@
         <div class="whoMe whoMejf">
           <div class="whoMeLeft">
             <div class="label">My invitation link：</div>
-            <div class="value">{{ AddrHandle(inviteUrl,11,11) }}</div>
-            <img src="../assets/Home/copy.png" alt="" />
+            <div class="value">{{ AddrHandle(inviteUrl,11,11) }}<img src="../assets/Home/copy.png" alt="" /></div>
           </div>
           <div class="Invite">Invite</div>
         </div>
@@ -119,11 +118,14 @@ watch(
     width: 750px;
     display: flex;
     justify-content: space-between;
-    font-size: 30px;
+    font-size: 35px;
     color: #fff;
     align-items: center;
+    font-family: OPlusSansRegular;
+    font-weight: 900;
     @media (max-width:750px) {
       width: 95%;
+      font-size: 30px;
     }
     img {
       height: 20px;
@@ -148,10 +150,17 @@ watch(
       border-bottom: 1px solid #28283B;
       margin: 0 25px;
       padding: 0 20px;
+      @media (max-width:600px) {
+        margin: 0 15px;
+        padding: 0 10px;
+      }
       .separate{
         height: 65px;
         border-left: 1px solid #28283B;
         margin: 0 25px;
+        @media (max-width:600px) {
+          margin: 0 15px;
+        }
       }
       .TeamInfoItem{
         flex: 1;
@@ -161,11 +170,12 @@ watch(
       font-size: 16px;
       color: #767676;
       margin-top: 38px;
+      font-family: PingFang-Regular;
       text-align: left;
     }
     .totalNum {
       font-size: 35px;
-      font-weight: 500;
+      font-family: PingFang-Bold;
       color: #6966FF;
       text-align: left;
       line-height: 1;
@@ -189,6 +199,14 @@ watch(
       display: flex;
       justify-content: center;
       flex-direction: column;
+      @media (max-width:700px) {
+        margin: 0 15px;
+        padding: 0 10px;
+      }
+      @media (max-width:500px) {
+        margin: 0 10px;
+        padding: 0 5px;
+      }
       .whoMejf{
         justify-content: space-between;
       }
@@ -198,16 +216,36 @@ watch(
         .whoMeLeft{
           display: flex;
           align-items: center;
+          @media (max-width:600px) {
+            flex-direction: column;
+            align-items:flex-start;
+          }
         }
         .label{
           color: #767676;
           font-size: 16px;
+          text-align: left;
+          font-family: PingFang-Heavy;
+        }
+        .value{
+          display: flex;
+          font-family: PingFang-Regular;
+          align-items: center;
         }
         .Invite{
           font-size: 20px;
+          font-family: PingFang-Bold;
           border-radius: 12px;
           padding: 8px 50px;
           background: #6966FF;
+          @media (max-width:700px) {
+            padding: 8px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+          }
+          @media (max-width:500px) {
+            padding: 5px 10px;
+          }
         }
       }
       .whoMe:nth-child(1){
@@ -224,6 +262,7 @@ watch(
     margin:22px auto 16px;
     color: #FFFFFF;
     font-size: 26px;
+    font-family: PingFang-Bold;
     @media (max-width:750px) {
       width: 95%;
     }
@@ -254,10 +293,12 @@ watch(
         span {
           font-weight: 400;
           color: #fff;
+          font-family: PingFang-Regular;
           font-size: 14px;
         }
         .address {
           color: #fff;
+          font-family: PingFang-Regular;
           font-size: 16px;
           img{
             margin-left: 16px;

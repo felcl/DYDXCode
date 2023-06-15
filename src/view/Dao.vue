@@ -13,8 +13,8 @@ BigNumber.NE = -40;
 BigNumber.PE = 40;
 const arbsList = ref([])
 const svipList = ref([])
-const arbIndex = ref(0)
-const svipIndex = ref(0)
+const arbIndex = ref(-1)
+const svipIndex = ref(-1)
 const daoAmount = ref(0)
 const arbRate = ref(0)
 const arbPrice = ref(0)
@@ -92,6 +92,12 @@ function approve(type){
         type: 'warning',
       })
     }
+    if(type === 'vip' && arbIndex.value === -1){
+      return 
+    }
+    if(type === 'svip' && svipIndex.value === -1){
+      return 
+    }
     if(type === 'vip'){
       inAllowance.value = true;
     }else{
@@ -122,6 +128,13 @@ function subscribe(id,type,buyAmount){
         message: $t('Pleasedonot'),
         type: 'warning',
       })
+    }
+
+    if(type === 'vip' && arbIndex.value === -1){
+      return 
+    }
+    if(type === 'svip' && svipIndex.value === -1){
+      return 
     }
 
     if(ARBBalance.value.lt(buyAmount)){
@@ -209,7 +222,7 @@ onMounted(()=>{
             <img src="../assets/Home/SubLogo.png" alt="" />
           </div>
           <div>
-            <div class="name">dYdx</div>
+            <div class="name">dYdX</div>
             <div class="priceInfo">
               <span class="price">$ {{ arbPrice }}</span>
               <span class="pro">{{ arbRate }}%</span>
@@ -225,15 +238,15 @@ onMounted(()=>{
         <div class="subscribeTitle">{{ $t('DydxPurchase') }}</div>
         <div class="subscribeLabel">{{ $t('Subscriptiontype') }}</div>
         <div class="subscribeRow">
-          <div class="item flexCenter" :class="{Active:arbIndex === index}" v-for="(item,index) in arbsList" @click="arbIndex = index">{{item.buyAmount}} DYDX</div>
+          <div class="item flexCenter" :class="{Active:arbIndex === index}" v-for="(item,index) in arbsList" @click="arbIndex = index">{{item.buyAmount}} dYdX</div>
         </div>
-        <div class="Submit flexCenter" v-if="ifApprove" @click="approve('vip')">
+        <div class="Submit flexCenter" :class="{disabled:arbIndex === -1}" v-if="ifApprove" @click="approve('vip')">
           <svg viewBox="25 25 50 50" v-if="inAllowance">
             <circle cx="50" cy="50" r="20"></circle>
           </svg>
           {{ $t('approve') }}
         </div>
-        <div class="Submit flexCenter" v-else @click="subscribe(arbsList[arbIndex].id,'vip',arbsList[arbIndex].buyAmount)">
+        <div class="Submit flexCenter"  :class="{disabled:arbIndex === -1}" v-else @click="subscribe(arbsList[arbIndex].id,'vip',arbsList[arbIndex].buyAmount)">
           <svg viewBox="25 25 50 50" v-if="inSubscribe">
             <circle cx="50" cy="50" r="20"></circle>
           </svg>
@@ -245,15 +258,15 @@ onMounted(()=>{
       <div class="subscribeTitle">{{ $t('SVIPPurchase') }}</div>
       <div class="subscribeLabel">{{ $t('Subscriptiontype') }}</div>
       <div class="subscribeRow">
-        <div class="item flexCenter" :class="{Active:svipIndex === index}" v-for="(item,index) in svipList" @click="svipIndex = index">{{item.buyAmount}} DYDX</div>
+        <div class="item flexCenter" :class="{Active:svipIndex === index}" v-for="(item,index) in svipList" @click="svipIndex = index">{{item.buyAmount}} dYdX</div>
       </div>
-      <div class="Submit flexCenter" v-if="ifSVIPApprove" @click="approve('svip')">
+      <div class="Submit flexCenter" :class="{disabled:svipIndex === -1}" v-if="ifSVIPApprove" @click="approve('svip')">
           <svg viewBox="25 25 50 50" v-if="inSVIPAllowance">
             <circle cx="50" cy="50" r="20"></circle>
           </svg>
           {{ $t('approve') }}
       </div>
-      <div class="Submit flexCenter" v-else @click="subscribe(svipList[svipIndex].id,'svip',svipList[svipIndex].buyAmount)">
+      <div class="Submit flexCenter" :class="{disabled:svipIndex === -1}" v-else @click="subscribe(svipList[svipIndex].id,'svip',svipList[svipIndex].buyAmount)">
         <svg viewBox="25 25 50 50" v-if="inSVIPSubscribe">
             <circle cx="50" cy="50" r="20"></circle>
           </svg>
@@ -274,6 +287,8 @@ onMounted(()=>{
   }
   .StakeTitle {
     font-size: 1.5rem;
+    font-family: OPlusSansRegular;
+    font-weight: 900;
     line-height: 1;
     color: #FFFFFF;
     text-align: center;
@@ -302,7 +317,7 @@ onMounted(()=>{
     width: 750px;
     // background: #00b3ff;
     border-radius: 1.25rem;
-    margin: 20px auto 0;
+    margin: 35px auto 0;
     @media (max-width: 1024px) {
       width: 95%;
       margin: 20px auto;
@@ -327,7 +342,7 @@ onMounted(()=>{
         flex-direction: column;
         justify-content:space-between;
         .label {
-          font-weight: 400;
+          font-family: PingFang-Regular;
           color: #767676;
           font-size: 16px;
           // margin-bottom: 10px;
@@ -338,7 +353,7 @@ onMounted(()=>{
         }
         .number {
           font-size: 36px;
-          font-weight: 600;
+          font-family: PingFang-Bold; 
           color: #6966FF;
           @media (max-width: 768px) {
             font-size: 30px;
@@ -384,7 +399,7 @@ onMounted(()=>{
         display: flex;
         align-items: center;
         .name {
-          font-weight: 600;
+          font-family: PingFang-Regular;
           color: #ffffff;
           font-size: 18px;
           @media (max-width:500px) {
@@ -392,7 +407,7 @@ onMounted(()=>{
           }
         }
         .price {
-          font-weight: bold;
+          font-family: PingFang-Bold;
           color: #ffffff;
           font-size: 20px;
           @media (max-width:500px) {
@@ -410,10 +425,11 @@ onMounted(()=>{
         }
       }
       .Right {
-        font-weight: 600;
+        font-family: PingFang-Regular;
         color: #ffffff;
         font-size: 20px;
         display: flex;
+        align-items: flex-end;
         flex-direction: column;
         @media (max-width:500px) {
             font-size: 12px;
@@ -455,7 +471,7 @@ onMounted(()=>{
       margin: 20px auto 0;
     }
     .subscribeTitle {
-      font-weight: 500;
+      font-family: PingFang-Bold; 
       color: #FFFFFF;
       font-size: 30px;
       text-align: center;
@@ -464,7 +480,7 @@ onMounted(()=>{
       }
     }
     .subscribeLabel {
-      font-weight: 400;
+      font-family: PingFang-Regular;
       color: #D4D4D4;
       font-size: 14px;
       margin-top: 18px;
@@ -480,7 +496,7 @@ onMounted(()=>{
         // background: #fff;
         border: 1px solid #D4D4D4;
         border-radius: 12px;
-        font-weight: 400;
+        font-family: PingFang-Bold; 
         margin-right: 15px;
         color: #FFFFFF;
         font-size: 20px;
@@ -500,6 +516,7 @@ onMounted(()=>{
     .Submit {
       cursor: pointer;
       background: #6966FF;
+      font-family: PingFang-Bold; 
       height: 56px;
       border-radius: 12px;
       margin: 40px auto 20px;
@@ -507,6 +524,10 @@ onMounted(()=>{
       @media (max-width:500px) {
         font-size: 14px;
       }
+    }
+    .disabled{
+      color: #1A1A1A;
+      background: #767676;
     }
   }
   .independence {

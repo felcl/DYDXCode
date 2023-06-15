@@ -65,6 +65,8 @@ function goPath(path){
         display: flex;
         justify-content: space-between;
         font-size: 30px;
+        font-family: OPlusSansRegular;
+        font-weight: 900;
         color: #FFFFFF;
         align-items: center;
         @media (max-width:800px) {
@@ -79,7 +81,7 @@ function goPath(path){
         font-size: 14px;text-align: center;
     }
     .RecordList{
-        border-radius: 2.5rem;
+        border-radius: 1.25rem;
         padding: 38px 30px;
         box-sizing: border-box;
         // height: 808px;
@@ -96,7 +98,7 @@ function goPath(path){
             align-items: center;
             justify-content:space-between;
             .address{
-                font-weight: 400;
+                font-family: PingFang-Regular;
                 color: #FFFFFF;
                 font-size: 16px;
             }
@@ -104,9 +106,11 @@ function goPath(path){
                 text-align: right;
                 .num{
                     font-size: 14px;
-                    color: #FFFFFF;
+                    color: #6966FF;
+                    font-family: PingFang-Bold; 
                 }
                 .time{
+                    font-family: PingFang-Regular;
                     font-size: 14px;
                     color: #FFFFFF;
                 }

@@ -333,8 +333,8 @@ function Withdraw(){
     </div>
     <template v-if="tabVal === 'Reward'">
       <div class="LabelRow">
-        <span class="labelName">Dydx {{ $t('Reward') }}</span>
-        <span class="more" @click="goPath('/Reward?type=Dydx')">{{ $t('more') }}></span>
+        <span class="labelName">dYdX {{ $t('Reward') }}</span>
+        <span class="more" @click="goPath('/Reward?type=dYdX')">{{ $t('more') }}></span>
       </div>
       <div class="RewardBox">
         <template v-if="AIncome.length !==0">
@@ -420,6 +420,7 @@ function Withdraw(){
     color: #6966FF;
     font-size: 20px;
     margin-bottom: 12px;
+    font-family: PingFang-Bold;
     padding: 0 16px;
 }
 // .InvitationInput{
@@ -442,6 +443,7 @@ function Withdraw(){
   margin-top: 32px;
   color: #FFFFFF;
   font-size: 20px;
+  font-family: PingFang-Bold; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -497,6 +499,7 @@ circle {
         color: #fff;
         font-size: 18px;
         text-decoration: underline;
+        font-family: PingFang-Regular;
     }
     input{
         flex: 1;
@@ -510,6 +513,7 @@ circle {
 .prompt{
     font-size: 12px;
     color: #fff;
+    font-family: PingFang-Regular;
     padding: 0 16px;
     margin-top: 15px;
 }

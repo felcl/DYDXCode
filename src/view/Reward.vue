@@ -1,12 +1,13 @@
 <script setup>
 import {onMounted , ref , watch , computed} from 'vue'
-import {useRoute} from 'vue-router'
+import {useRoute,useRouter} from 'vue-router'
 import Axios from '../axios';
 import {dateFormat} from "../utils/tool";
 import { useStore } from "vuex";
 const store = useStore();
 const route = useRoute()
-const type = ref('Dydx')
+const router = useRouter()
+const type = ref('dYdX')
 const tabVal = ref('Stake')
 const RewardList = ref([])
 const RewardPage = ref(1)
@@ -14,11 +15,11 @@ const StakeList = ref([])
 const AwardList = ref([])
 const TreasuryList = ref([])
 const typeMap = {
-    Dydx:1,
+    dYdX:1,
     SVIP:2
 }
 const rewardTypeMap = {
-    Dydx:2,
+    dYdX:2,
     SVIP:3
 }
 const token = computed(() => {
@@ -86,7 +87,7 @@ onMounted(()=>{
 <template>
   <div class="Reward">
     <div class="RewardHead">
-        <img src="" alt="">
+        <img src="../assets/Home/back.png" @click="router.go(-1)" alt="">
         <div>
             <div class="StakeTitle">{{ type }} {{ $t('rewards') }}</div>
             <!-- <div class="StakeSubTitle">Track your MATIC staking rewards with ARB</div> -->
@@ -189,7 +190,9 @@ onMounted(()=>{
             cursor: pointer;
             width: 118px;
             height: 54px;
-            color: #FFFFFF;
+            color: #767676;
+            font-family: PingFang-Regular;
+            font-size: 20px;
             border-radius: 32px;
             @media (max-width:500px) {
                 font-size: 14px;
@@ -198,6 +201,7 @@ onMounted(()=>{
             }
         }
         .active{
+            font-family: PingFang-Bold;
             background: #6966FF;
             color: #fff;
         }
@@ -215,17 +219,25 @@ onMounted(()=>{
     }
     .RewardHead{
         display: flex;
+        align-items: center;
         justify-content: space-between;
-        width: 37.5rem;
-        margin:0 auto;
+        width: 750px;
+        margin:0 auto 42px;
+        img{
+            height: 20px;
+        }
+        @media (max-width:768px) {
+            width: 95%;
+        }
     }
     .StakeTitle{
         font-size: 2rem;
         line-height: 1;
-        font-weight: 500;
+        font-family: OPlusSansRegular;
+        font-weight: 900;
         color: #fff;
         text-align: center;
-        margin-bottom: 42px;
+        
         @media (max-width:1024px) {
             font-size: 3rem;
         }
@@ -263,10 +275,12 @@ onMounted(()=>{
             .num{
                 color: #49DE3D;
                 font-size: 14px;
+                font-family: PingFang-Medium;
             }
             .time{
                 color: #fff;
                 font-size: 14px;
+                font-family: PingFang-Medium;
             }
         }
         .RewardRow:nth-last-child(1){
