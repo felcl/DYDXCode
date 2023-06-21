@@ -147,7 +147,7 @@ function goPath(path){
                       <div class="subTitle">{{ $t('Joinchat') }}</div>
                   </div>
               </div>
-            </a>
+            </a>  
           </div>
           <div class="separate"></div>
           <div class="contactItemBox">

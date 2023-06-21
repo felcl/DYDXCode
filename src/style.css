@@ -30,11 +30,11 @@
   font-family: PingFang-Medium;  
   src: url(./assets/font/PingFang/PingFang-Medium.ttf); 
 }
-/* @font-face{
-  font-family: OPlusSansBold;  
-  src: url(./assets/font/PingFang/OPlusSansBold.ttf); 
-}
 @font-face{
+  font-family: OPlusSansBold;  
+  src: url(./assets/font/OPlusSansBold.ttf); 
+}
+/* @font-face{
   font-family: OPlusSansMedium;  
   src: url(./assets/font/PingFang/OPlusSansMedium.ttf); 
 } */

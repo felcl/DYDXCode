@@ -6,6 +6,7 @@ import History from '../view/History.vue'
 import Reward from '../view/Reward.vue'
 import Team from '../view/Team.vue'
 import Record from '../view/Record.vue'
+import Lottery from '../view/Lottery.vue'
 const routes = [
     { path: '/', component: Home },
     { path: '/Dao', component: Dao },
@@ -14,7 +15,8 @@ const routes = [
     { path: '/Reward', component: Reward },
     { path: '/Team', component: Team },
     { path: '/Record', component: Record },
-  ]
+    { path: '/Lottery', component: Lottery },
+  ] 
   const router = VueRouter.createRouter({
       // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
       history: VueRouter.createWebHashHistory(),

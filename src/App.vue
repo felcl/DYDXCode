@@ -157,10 +157,10 @@ onMounted(async()=>{
     <div class="bgvideo">
       <video src="./assets/video/wave.webm" preload="auto" autoplay loop disablepictureinpicture playsinline muted></video>
     </div>
-    <el-dialog v-model="InviteDialogVisible" :title="$t('Invite')" :width="dialogWidth" :show-close="false" :close-on-click-modal="false" center :close-on-press-escape="false">
+    <!-- <el-dialog v-model="InviteDialogVisible" :title="$t('Invite')" :width="dialogWidth" :show-close="false" :close-on-click-modal="false" center :close-on-press-escape="false">
       <input class="InvitationInput" :placeholder="$t('Pleaseenterthe')" v-model="InvitationLink" type="text">
       <div class="enter" @click="bind">{{ $t('Confirm') }}</div>
-    </el-dialog>
+    </el-dialog> -->
 </template>
 
 <style lang="scss" scoped>
