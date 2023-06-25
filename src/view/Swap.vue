@@ -7,22 +7,42 @@
         <div class="put">
           <input type="text">
         </div>
-        <div class="sel">
-          <div class="tokenIcon"></div>
-          <div class="TokenName">OP</div>
-          <img src="../assets/Home/arrow.png" alt="">
-        </div>
+        <el-dropdown trigger="click">
+          <div class="sel">
+            <div class="tokenIcon"></div>
+            <div class="TokenName">ABC</div>
+            <img src="../assets/Home/arrow.png" alt="">
+          </div>
+          <template #dropdown>
+            <div class="SelList">
+              <div class="SelItem">
+                <div class="TokenIcon"></div>
+                <div class="TokenName">ABC</div>
+              </div>
+            </div>
+          </template>
+        </el-dropdown>
       </div>
       <div class="SwapLabel">You'll receive</div>
       <div class="PutSel">
         <div class="put">
           <input type="text">
         </div>
-        <div class="sel">
-          <div class="tokenIcon"></div>
-          <div class="TokenName">ABC</div>
-          <img src="../assets/Home/arrow.png" alt="">
-        </div>
+        <el-dropdown trigger="click">
+          <div class="sel">
+            <div class="tokenIcon"></div>
+            <div class="TokenName">ABC</div>
+            <img src="../assets/Home/arrow.png" alt="">
+          </div>
+          <template #dropdown>
+            <div class="SelList">
+              <div class="SelItem">
+                <div class="TokenIcon"></div>
+                <div class="TokenName">ABC</div>
+              </div>
+            </div>
+          </template>
+        </el-dropdown>
       </div>
       <div class="SwapInfoRow">
         <div class="label">Reference price</div>
@@ -224,6 +244,30 @@
       text-align: right;
       font-size: 14px;
       font-family: PingFang-Regular;
+    }
+  }
+}
+.SelList{
+  width: 130px;
+  background: #393955;
+  border-radius: 15px;
+  padding: 25px 10px;
+  box-sizing: border-box;
+  .SelItem{
+    display: flex;
+    align-items: center;
+    .TokenIcon{
+      width: 30px;
+      height: 30px;
+      background: #6966FF;
+      border-radius: 50%;
+    }
+    .TokenName{
+      flex: 1;
+      text-align: center;
+      color: #D8D8D8;
+      font-size: 22px;
+      font-family: PingFang-Bold;
     }
   }
 }
