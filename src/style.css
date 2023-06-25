@@ -8,39 +8,39 @@
 } */
 @font-face{
   font-family: PingFang;
-  src: url(./assets/font/PingFangRegular.ttf);  
+  src: url(./assets/font/PingFangRegular.ttf);
 }
 @font-face{
-  font-family: pingfang;  
-  src: url(./assets/font/PINGFANGHEAVY.ttf); 
+  font-family: pingfang;
+  src: url(./assets/font/PINGFANGHEAVY.ttf);
 }
 @font-face{
-  font-family: PingFang-Regular;  
-  src: url(./assets/font/PingFang/PingFang-Regular.ttf); 
+  font-family: PingFang-Regular;
+  src: url(./assets/font/PingFang/PingFang-Regular.ttf);
 }
 @font-face{
-  font-family: PingFang-Heavy;  
-  src: url(./assets/font/PingFang/PingFang-Heavy.ttf); 
+  font-family: PingFang-Heavy;
+  src: url(./assets/font/PingFang/PingFang-Heavy.ttf);
 }
 @font-face{
-  font-family: PingFang-Bold;  
-  src: url(./assets/font/PingFang/PingFang-Bold.ttf); 
+  font-family: PingFang-Bold;
+  src: url(./assets/font/PingFang/PingFang-Bold.ttf);
 }
 @font-face{
-  font-family: PingFang-Medium;  
-  src: url(./assets/font/PingFang/PingFang-Medium.ttf); 
+  font-family: PingFang-Medium;
+  src: url(./assets/font/PingFang/PingFang-Medium.ttf);
 }
 @font-face{
-  font-family: OPlusSansBold;  
-  src: url(./assets/font/OPlusSansBold.ttf); 
+  font-family: OPlusSansBold;
+  src: url(./assets/font/OPlusSansBold.ttf);
 }
 /* @font-face{
-  font-family: OPlusSansMedium;  
-  src: url(./assets/font/PingFang/OPlusSansMedium.ttf); 
+  font-family: OPlusSansMedium;
+  src: url(./assets/font/PingFang/OPlusSansMedium.ttf);
 } */
 @font-face{
-  font-family: OPlusSansRegular; 
-  src: url(./assets/font/OPlusSansRegular.ttf); 
+  font-family: OPlusSansRegular;
+  src: url(./assets/font/OPlusSansRegular.ttf);
 }
 :root {
   /* font-family: PingFang !important; */

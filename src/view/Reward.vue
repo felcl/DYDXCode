@@ -27,7 +27,7 @@ const token = computed(() => {
 });
 watch(token,(token)=>{
     if(token){
-        Axios.get(`/dao/rewardDetail/${typeMap[type.value]}`).then(res=>{
+        Axios.get(`/dao/rewardDetail/${typeMap[type.value]}/${RewardPage.value}/20`).then(res=>{
             RewardList.value = res.data.data
             // console.log(res,"收益记录")
         })

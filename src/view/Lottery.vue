@@ -162,7 +162,8 @@
     background: #1C1C28;
     border: 1px solid #28283B;
     border-radius: 25px;
-    overflow: hidden;
+    overflow: hidden; 
+    padding-bottom: 30px;
     .HistoryTop{
         height: 60px;
         border-bottom: 1px solid #28283B;
@@ -173,11 +174,15 @@
         font-size: 16px;
         font-family: PingFang-Medium;
         background: #151522;
+        margin-bottom: 30px;
     }
     .HistoryRow{
-        margin: 0 45px;
+        margin: 0 45px 25px;
         display: flex;
         justify-content: space-between;
+    }
+    .HistoryRow:nth-last-of-type(1){
+        margin: 0 45px;
     }
     .HistoryColumn:nth-of-type(1){
         color: #FFFFFF;
