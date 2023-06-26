@@ -111,6 +111,14 @@
   background: #1C1C28;
   padding: 47px 32px 30px;
   box-sizing: border-box;
+  @media (max-width:800px) {
+    width: auto;
+    margin: 35px 25px;
+  }
+  @media (max-width:600px) {
+    margin: 35px 15px;
+    padding: 47px 20px 30px;
+  }
   .SwapLabel{
     color: #AAAAAA;
     font-size: 20px;
@@ -126,6 +134,9 @@
       background: #393955;
       padding: 0 13px;
       border-radius: 15px;
+      @media (max-width:500px) {
+        height: 60px;
+      }
       input{
         height: 100%;
         width: 100%;
@@ -147,11 +158,20 @@
       align-items: center;
       padding: 0 10px;
       box-sizing: border-box;
+      @media (max-width:500px) {
+        height: 60px;
+        width: 100px;
+        margin-left: 6px;
+      }
       .tokenIcon{
         width: 30px;
         height: 30px;
         background: #F64742;
         border-radius: 50%;
+        @media (max-width:500px) {
+          width: 20px;
+          height: 20px;
+        }
       }
       .TokenName{
         color: #D8D8D8;
@@ -159,6 +179,14 @@
         font-family: PingFang-Bold;
         flex: 1;
         margin: 0 10px;
+        @media (max-width:500px) {
+          font-size: 16px;
+        }
+      }
+      img{
+        @media (max-width:500px) {
+          width: 8px;
+        }
       }
     }
   }
@@ -197,14 +225,27 @@
   box-sizing: border-box;
   margin: 16px auto 60px;
   padding: 35px 45px 68px;
+  @media (max-width:800px) {
+    width: auto;
+    margin: 16px 25px 60px;
+  }
+  @media (max-width:600px) {
+    overflow-x: auto;
+    padding: 35px 15px 68px;
+    margin: 16px 15px 60px;
+  }
   .historyItem{
     padding-bottom: 20px;
     border-bottom: 1px solid #28283B;
     display: flex;
     align-items: center;
+    @media (max-width:600px) {
+    //  width: 600px;
+    }
   }
   .from,.to{
-    width: 165px;
+    // width: 165px;
+    flex: 1;
     .Token{
       display: flex;
       .TokenImg{
@@ -228,11 +269,19 @@
       margin-top: 10px;
     }
   }
+  .to{
+    .Token{
+      justify-content: flex-end;
+    }
+    .amount{
+      text-align: right;
+    }
+  }
   .goTo{
-    margin-right: 95px;
+    margin:0 20px;
   }
   .StatusTime{
-    flex: 1;
+    margin-left: 20px;
     .success{
       font-family: PingFang-Bold;
       text-align: right;

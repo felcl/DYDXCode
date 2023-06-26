@@ -2,7 +2,7 @@
 import { ref, onMounted } from "vue";
 let dialogWidth = ref("680px")
 const WithdrawVisible = ref(false)
-const RechargeVisible = ref(true)
+const RechargeVisible = ref(false)
 const inWithdraw = ref(false)
 const inRecharge = ref(false)
 onMounted(()=>{
@@ -98,7 +98,6 @@ let setDialogWidth = (()=>{
             </div>
           </template>
         </el-dropdown>
-        
       </div>
       <div class="enter Disabled" @click="Recharge">
         <svg viewBox="25 25 50 50" v-if="inRecharge">
@@ -124,15 +123,25 @@ let setDialogWidth = (()=>{
   width: 750px;
   padding: 45px;
   box-sizing: border-box;
-  background: url(../assets//Home/WalletBg.png) no-repeat center center / 100% 100%;
+  background: url(../assets//Home/WalletBg.png) no-repeat center center;
   margin: 40px auto 0;
   border-radius: 25px;
   overflow: hidden;
+  @media (max-width:800px) {
+    width: auto;
+    margin: 40px 25px 0;
+  }
+  @media (max-width:500px) {
+    padding: 25px;
+  }
   .BalanceLabel{
     color: #767676;
     font-size: 18px;
     font-family: PingFang-Regular;
     line-height: 1;
+    @media (max-width:500px) {
+      font-size: 16px;
+    }
   }
   .amount{
     line-height: 1;
@@ -140,6 +149,9 @@ let setDialogWidth = (()=>{
     font-size: 35px;
     font-family: PingFang-Bold;
     margin-top: 23px;
+    @media (max-width:500px) {
+      font-size: 22px;
+    }
   }
   .btnRow{
     display: flex;
@@ -152,6 +164,17 @@ let setDialogWidth = (()=>{
       margin-right: 13px;
       font-size: 18px;
       color: #6966FF;
+      @media (max-width:500px) {
+        width: auto;
+        padding:0 20px;
+        height: 36px;
+        font-size: 16px;
+      }
+      @media (max-width:350px) {
+        padding:0 15px;
+        font-size: 12px;
+        height: 30px;
+      }
     }
   }
 }
@@ -168,8 +191,11 @@ let setDialogWidth = (()=>{
     background: #1C1C28;
     border: 1px solid #28283B;
     border-radius: 25px;
-    overflow: hidden; 
-    padding-bottom: 30px;
+    overflow: hidden;
+    @media (max-width:800px) {
+      width: auto;
+      margin: 40px 25px 0;
+    }
     .HistoryTop{
         height: 60px;
         border-bottom: 1px solid #28283B;
@@ -180,7 +206,13 @@ let setDialogWidth = (()=>{
         font-size: 16px;
         font-family: PingFang-Medium;
         background: #151522;
-        margin-bottom: 30px;
+        @media (max-width:500px) {
+            font-size: 14px;
+            padding: 0 25px;
+        }
+        @media (max-width:450px) {
+            font-size: 12px;
+        }
     }
     .HistoryRow{
         margin: 0 45px 25px;
