@@ -6,7 +6,8 @@ export const store = createStore({
     return {
       address: '',
       leftMenu: false,
-      token:""
+      token:"",
+      Version:2
     }
   },
   mutations: {

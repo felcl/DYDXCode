@@ -52,6 +52,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  --el-message-close-size:30px;
   .el-popper{
     --el-bg-color-overlay:transparent !important;
     --el-border-color-light:transparent !important;
@@ -71,4 +72,8 @@ body{
 }
 .el-notification__content{
   text-align: left !important;
+}
+.el-dialog__headerbtn{
+  top: 16px !important;
+  right: 20px !important;
 }

@@ -24,8 +24,9 @@ onMounted(() => {
 <template>
   <div class="Lottery">
     <div class="countdown">
-        Next round in：<span>00:01:59</span>
-    </div>
+        <span class="Next">Next round in：<span>36/99</span></span>
+        <span class="HistoryEntrance">History ></span>
+    </div> 
     <div class="LotteryBanner">
         <img src="../assets/Home/LotteryBanner.png" alt="">
     </div>
@@ -35,13 +36,14 @@ onMounted(() => {
             <div class="TabItem flexCenter">EFG POOL</div>
         </div>
         <div class="poolRow">
+            <div class="poolItem">0</div>
             <div class="poolItem">1</div>
             <div class="poolItem">2</div>
             <div class="poolItem">3</div>
             <div class="poolItem">4</div>
-            <div class="poolItem">5</div>
         </div>
         <div class="poolRow">
+            <div class="poolItem">5</div>
             <div class="poolItem">6</div>
             <div class="poolItem">7</div>
             <div class="poolItem">8</div>
@@ -58,8 +60,8 @@ onMounted(() => {
         <div class="HistoryTop">Round / result / tatus / Quantity / Time / Earn</div>
         <div class="slideBox" ref="Table">
             <div class="HistoryRow" v-for="(item,index) in 10" ref="TabRows">
-                <div class="HistoryColumn" :style="{width:WidthArr[0] ? WidthArr[0]+'px' : 'auto'}">2307010001</div>
-                <div class="HistoryColumn" :style="{width:WidthArr[1] ? WidthArr[1]+'px' : 'auto'}">9-9</div>
+                <div class="HistoryColumn" :style="{width:WidthArr[0] ? WidthArr[0]+'px' : 'auto'}">2307010001 <div class="ball flexCenter">9</div></div>
+                <div class="HistoryColumn" :style="{width:WidthArr[1] ? WidthArr[1]+'px' : 'auto'}">9</div>
                 <div class="HistoryColumn" :style="{width:WidthArr[2] ? WidthArr[2]+'px' : 'auto'}">Win</div>
                 <div class="HistoryColumn" :style="{width:WidthArr[3] ? WidthArr[3]+'px' : 'auto'}">$ <span v-for="val in item">12</span></div>
                 <div class="HistoryColumn" :style="{width:WidthArr[4] ? WidthArr[4]+'px' : 'auto'}">12:22:33</div>
@@ -78,15 +80,29 @@ onMounted(() => {
     font-weight: 900;
     font-size: 36px;
     color: #FFFFFF;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    width: 750px;
+    margin: 0 auto;
     @media (max-width:767px) {
         padding-top: 20rem;
     }
     @media (max-width:767px) {
         font-size: 22px;
     }
-    span{
-        color: #6966FF;
+    @media (max-width:800px) {
+        width: auto;
+        margin:42px 25px 0;
+    }
+    .Next{
+        color: #FFFFFF;
+        span{
+            color: #6966FF;
+        }
+    }
+    .HistoryEntrance{
+        color: #AAAAAA;
+        font-size: 20px;
     }
 }
 .LotteryBanner{
@@ -228,14 +244,14 @@ onMounted(() => {
 }
 .LotteryHistory{
     width: 750px;
-    margin:38px auto 0;
+    margin:38px auto;
     background: #1C1C28;
     border: 1px solid #28283B;
     border-radius: 25px;
     overflow: hidden;
     @media (max-width:800px) {
         width: auto;
-        margin:42px 25px 0;
+        margin:42px 25px;
     }
     .HistoryTop{
         height: 60px;
@@ -285,6 +301,18 @@ onMounted(() => {
         white-space:nowrap;
         margin: 0 15px;
         flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        .ball{
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            background: #6966FF;
+            color: #FFFFFF;
+            font-size: 16px;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
     }
     .HistoryColumn:nth-of-type(1){
         color: #FFFFFF;

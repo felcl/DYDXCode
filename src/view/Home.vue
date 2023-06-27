@@ -3,13 +3,14 @@ import Axios from '../axios'
 import {onMounted,ref} from 'vue'
 import {useRouter} from 'vue-router'
 const Info = ref(null)
+
+
 const router = useRouter()
 onMounted(()=>{
   Axios.get('/home/data').then(res=>{
     if(res.data.code === 200){
       Info.value = res.data.data
     }
-    // console.log(res,"首页数据")
   })
 })
 function goPath(path){
@@ -122,6 +123,18 @@ function goPath(path){
         </div>
         <div class="StakeNow flexCenter" @click="goPath('/Dao')">{{$t('stakenow')}}</div>
       </div>
+      <div class="CenterTitle">Lucky hasy</div>
+      <div class="CenterSubTitle">
+        Participate in the lucky hash, the winner wins ABC, the loser gets DEF
+      </div>
+      <div class="luckyBanner">
+        <img src="../assets/Home/luckyBanner.png" alt="">
+        <div class="luckyText">
+          Winner wins ABC<br>
+          Loser gets DEF
+        </div>
+        <div class="luckyBannerBtn flexCenter" @click="goPath('/Lottery')">Play now</div>
+      </div>
       <div class="join">
         <div class="CenterTitle">{{ $t('Joinourcommunity') }}</div>
         <div class="CenterSubTitle">
@@ -147,24 +160,8 @@ function goPath(path){
                       <div class="subTitle">{{ $t('Joinchat') }}</div>
                   </div>
               </div>
-            </a>  
+            </a>
           </div>
-          <div class="separate"></div>
-          <div class="contactItemBox">
-            <!-- <a href="" target="_blank">
-              <div class="filter"></div>
-              <div class="contactItem">
-                  <div class="icon">
-                      <img src="../assets/Home/Twitter.png" alt="" />
-                  </div>
-                  <div class="Title">
-                      <div class="mainTitle">Twitter</div>
-                      <div class="subTitle">follow @dYdXDAO</div>
-                  </div>
-              </div>
-            </a> -->
-          </div>
-          
         </div>
       </div>
       <div class="foot">
@@ -483,6 +480,54 @@ function goPath(path){
       }
     }
   }
+  .luckyBanner{
+    width: 43.9rem;
+    margin: 33px auto 0;
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+    @media (max-width:1136px) {
+      width: 50rem;
+    }
+    @media (max-width:868px) {
+      width: 60rem;
+    }
+    @media (max-width:588px) {
+      width: 70rem;
+    }
+    @media (max-width:488px) {
+      padding-bottom: 20px;
+      width: 75rem;
+    }
+    @media (max-width:388px) {
+      width: 85rem;
+    }
+    img{
+      width: 100%;
+      // position: absolute;
+    }
+    .luckyText{
+      color: #FFFFFF;
+      font-size: 35px;
+      position: absolute;
+      z-index: 10;
+      top: 30%;
+      left: 7%;
+      text-align: center;
+    }
+    .luckyBannerBtn{
+      width: 215px;
+      height: 60px;
+      background: #6966FF;
+      border-radius: 10px;
+      position: absolute;
+      top: 65%;
+      left: 12%;
+      color: #FFFFFF;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
   .join {
     padding: 58px 0 150px;
     margin-top: 2.5rem;
@@ -558,7 +603,7 @@ function goPath(path){
     .contactRow{
         width:53.75rem ;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         margin:2.2rem auto 0;
         @media (max-width:768px) {
           width: 65rem;
@@ -575,6 +620,7 @@ function goPath(path){
           position: relative;
           height: 8rem;
           flex: 1;
+          max-width: 415px;
           @media (max-width:768px) {
             height: 10rem;
             margin-bottom: 20px;
