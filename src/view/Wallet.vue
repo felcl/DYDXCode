@@ -15,7 +15,7 @@ let setDialogWidth = (()=>{
   let val = document.body.clientWidth
   const def = 680 // 默认宽度
   if (val < def) {
-    dialogWidth.value = '98%'
+    dialogWidth.value = '95%'
   } else {
     dialogWidth.value = def + 'px'
   }
@@ -29,21 +29,23 @@ let setDialogWidth = (()=>{
       <div class="BalanceLabel">Balance</div>
       <div class="amount">$ 22222222</div>
       <div class="btnRow">
-        <div class="btn flexCenter" :style="{'background':'#6966FF',color:'#fff'}">Withdraw</div>
-        <div class="btn flexCenter">Recharge</div>
+        <div class="btn flexCenter" :style="{'background':'#6966FF',color:'#fff'}" @click="WithdrawVisible = true">Withdraw</div>
+        <div class="btn flexCenter" @click="RechargeVisible = true">Recharge</div>
       </div>
     </div>
     <div class="HistoryTitle">History</div>
     <div class="LotteryHistory">
         <div class="HistoryTop">Token / Status / Quantity / Time</div>
-        <div class="HistoryRow">
-            <div class="HistoryColumn">
-              <div class="TokenIcon"></div>
-              OP
-            </div>
-            <div class="HistoryColumn">Withdraw</div>
-            <div class="HistoryColumn">$ 13413.2568</div>
-            <div class="HistoryColumn">2022/02/22 12:22:33</div>
+        <div class="slideBox">
+          <div class="HistoryRow" v-for="item in 10">
+              <div class="HistoryColumn">
+                <div class="TokenIcon"></div>
+                OP
+              </div>
+              <div class="HistoryColumn">Withdraw</div>
+              <div class="HistoryColumn">$ 13413.2568</div>
+              <div class="HistoryColumn">2022/02/22 12:22:33</div>
+          </div>
         </div>
     </div>
   </div>
@@ -214,36 +216,63 @@ let setDialogWidth = (()=>{
             font-size: 12px;
         }
     }
+    .slideBox{
+        overflow-x: auto;
+        padding: 30px 0;
+    }
     .HistoryRow{
         margin: 0 45px 25px;
         display: flex;
+        width: 100%;
         justify-content: space-between;
+        @media (max-width:650px) {
+          margin: 0 25px 25px;
+        }
     }
     .HistoryRow:nth-last-of-type(1){
         margin: 0 45px;
+        @media (max-width:650px) {
+          margin: 0 25px;
+        }
     }
     .HistoryColumn{
       display: flex;
       align-items: center;
+      white-space:nowrap;
+      @media (max-width:650px) {
+        margin: 0 15px;
+      }
     }
     .HistoryColumn:nth-of-type(1){
         color: #FFFFFF;
-        font-family: PingFang-Regular;
+        font-family: PingFang-Regular;  
+        @media (max-width:600px) {
+          width: 80px;
+        }
     }
     .HistoryColumn:nth-of-type(2){
       color: #1FB51A;
       font-size: 15px;
       font-family: PingFang-Bold;
+      @media (max-width:600px) {
+          width: 80px;
+      }
     }
     .HistoryColumn:nth-of-type(3){
         color: #1FB51A;
         font-size: 15px;
         font-family: PingFang-Bold;
+        @media (max-width:600px) {
+          min-width: 120px;
+        }
     }
     .HistoryColumn:nth-of-type(4){
         color: #FFFFFF;
         font-size: 15px;
         font-family: PingFang-Regular;
+        @media (max-width:600px) {
+          min-width: 120px;
+        }
     }
     .TokenIcon{
       width: 20px;

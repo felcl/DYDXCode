@@ -1,4 +1,24 @@
 <script setup>
+import {ref, onMounted,nextTick } from 'vue'
+const TabRows = ref(null)
+const Table = ref(null)
+const MaxWidth = ref(0)
+const WidthArr = ref([])
+onMounted(() => {
+    nextTick(()=>{
+        let widthArr = []
+        console.log(Table.value.scrollWidth)
+        MaxWidth.value = Table.value.scrollWidth
+        TabRows.value.forEach(Dom=>{
+            [...Dom.children].forEach((child,index)=>{
+                if(!widthArr[index] || widthArr[index] < child.clientWidth){
+                    widthArr[index] = child.clientWidth
+                }
+            })
+        })
+        WidthArr.value = widthArr
+    })
+})
 </script>
 
 <template>
@@ -36,14 +56,14 @@
     <div class="HistoryTitle">History</div>
     <div class="LotteryHistory">
         <div class="HistoryTop">Round / result / tatus / Quantity / Time / Earn</div>
-        <div class="slideBox">
-            <div class="HistoryRow" v-for="(item,index) in 10">
-                <div class="HistoryColumn">2307010001</div>
-                <div class="HistoryColumn">9-9</div>
-                <div class="HistoryColumn">Win</div>
-                <div class="HistoryColumn">$ <span v-for="val in item">12</span></div>
-                <div class="HistoryColumn">12:22:33</div>
-                <div class="HistoryColumn">$ 13413.2568</div>
+        <div class="slideBox" ref="Table">
+            <div class="HistoryRow" v-for="(item,index) in 10" ref="TabRows">
+                <div class="HistoryColumn" :style="{width:WidthArr[0] ? WidthArr[0]+'px' : 'auto'}">2307010001</div>
+                <div class="HistoryColumn" :style="{width:WidthArr[1] ? WidthArr[1]+'px' : 'auto'}">9-9</div>
+                <div class="HistoryColumn" :style="{width:WidthArr[2] ? WidthArr[2]+'px' : 'auto'}">Win</div>
+                <div class="HistoryColumn" :style="{width:WidthArr[3] ? WidthArr[3]+'px' : 'auto'}">$ <span v-for="val in item">12</span></div>
+                <div class="HistoryColumn" :style="{width:WidthArr[4] ? WidthArr[4]+'px' : 'auto'}">12:22:33</div>
+                <div class="HistoryColumn" :style="{width:WidthArr[5] ? WidthArr[5]+'px' : 'auto'}">$ <span v-for="val in 11-item">12</span></div>
             </div>
         </div>
     </div>
@@ -239,32 +259,38 @@
     .slideBox{
         overflow-x: auto;
         padding: 30px 0;
-    }
-    .HistoryRow{
-        margin: 0 45px 25px;
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
+        margin: 0 45px;
         @media (max-width:700px) {
             margin: 0 20px 25px;
         }
+    }
+    .HistoryRow{
+        margin: 0 0 25px;
+        display: flex;
+        justify-content: space-between;
+        @media (max-width:700px) {
+            margin: 0 0 25px;
+        }
         @media (max-width:600px) {
-            min-width: 120%;
+            // min-width: 120%;
+            // width: max-content;
         }
     }
     .HistoryRow:nth-last-of-type(1){
         @media (max-width:700px) {
-            margin: 0 20px;
+            margin: 0;
         }
     }
     .HistoryColumn{
         white-space:nowrap;
+        margin: 0 15px;
+        flex-shrink: 0;
     }
     .HistoryColumn:nth-of-type(1){
         color: #FFFFFF;
         font-family: PingFang-Regular;
         @media (max-width:600px) {
-            width: 80px;
+            // width: 80px;
         }
 
     }
@@ -272,37 +298,37 @@
         color: #6966FF;
         font-family: PingFang-Bold;
         @media (max-width:600px) {
-            width: 50px;
+            // width: 50px;
         }
     }
     .HistoryColumn:nth-of-type(3){
         color: #1FB51A;
         font-family: PingFang-Bold;
         @media (max-width:600px) {
-            width: 50px;
+            // width: 50px;
         }
     }
     .HistoryColumn:nth-of-type(4){
         color: #FFFFFF;
         font-family: PingFang-Regular;
         @media (max-width:600px) {
-            flex: 1;
-            margin-right: 20px;
+            // flex: 1;
+            // margin-right: 20px;
         }
     }
     .HistoryColumn:nth-of-type(5){
         color: #FFFFFF;
         font-family: PingFang-Regular;
         @media (max-width:600px) {
-            width: 80px;
+            // width: 80px;
         }
     }
     .HistoryColumn:nth-of-type(6){
         color: #FFFFFF;
         font-family: PingFang-Regular;
         @media (max-width:600px) {
-            flex: 1;
-            margin-left: 20px;
+            // flex: 1;
+            // margin-left: 20px;
         }
     }
 }

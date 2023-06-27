@@ -20,6 +20,7 @@ import blackMenu from '../assets/Home/blackMenu.png'
 import Menu from '../assets/Home/menu.png'
 import Lang from '../assets/Home/lang.png'
 import blackLang from '../assets/Home/blackLang.png'
+import Lucky from '../assets/Home/Lucky.png'
 const router = useRouter()
 const route = useRoute()
 const store = useStore()
@@ -85,6 +86,27 @@ onMounted(()=>{
           <div>
             <img :src="IconPath('/Rewares',RewardsActiveIcon,RewardsIcon,blackRewardsIcon)" alt="">
             <span>{{ $t("rewards") }}</span>
+            <div class="ActiveBorder"></div>
+          </div>
+        </div>
+        <div :class="['menuItem',{ActiveMenuItem:route.path === '/Swap'}]" @click="goPath('/Swap')">
+          <div>
+            <!-- <img :src="IconPath('/Lottery',RewardsActiveIcon,Lucky,blackRewardsIcon)" alt=""> -->
+            <span>Swap</span>
+            <div class="ActiveBorder"></div>
+          </div>
+        </div>
+        <div :class="['menuItem',{ActiveMenuItem:route.path === '/Lottery'}]" @click="goPath('/Lottery')">
+          <div>
+            <!-- <img :src="IconPath('/Lottery',RewardsActiveIcon,Lucky,blackRewardsIcon)" alt=""> -->
+            <span>Lucky Hash</span>
+            <div class="ActiveBorder"></div>
+          </div>
+        </div>
+        <div :class="['menuItem',{ActiveMenuItem:route.path === '/Wallet'}]" @click="goPath('/Wallet')">
+          <div>
+            <!-- <img :src="IconPath('/Lottery',RewardsActiveIcon,Lucky,blackRewardsIcon)" alt=""> -->
+            <span>Wallet</span>
             <div class="ActiveBorder"></div>
           </div>
         </div>
@@ -196,7 +218,7 @@ onMounted(()=>{
     }
   }
   .menu {
-    margin-left: 7.5rem;
+    margin-left: 3.5rem;
     display: flex;
     @media (max-width: 768px) {
       // margin-left: 2.5rem;
@@ -206,7 +228,7 @@ onMounted(()=>{
       display: flex;
       flex-direction: column;
       justify-content: center;
-      margin-right: 3.2rem;
+      margin-right: 1.2rem;
       font-family: PingFang-Regular;
       cursor: pointer;
       img {
