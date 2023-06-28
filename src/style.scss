@@ -57,6 +57,12 @@
     --el-bg-color-overlay:transparent !important;
     --el-border-color-light:transparent !important;
   }
+  .el-table{
+    --el-table-tr-bg-color:transparent !important;
+    --el-table-bg-color:transparent !important;
+    --el-table-border-color:transparent !important;
+    --el-bg-color:transparent #1C1C28 !important;
+  }
 }
 body{
   margin: 0;

@@ -20,5 +20,8 @@ export const store = createStore({
     SETLEFTMENU (state,leftMenu){
       state.leftMenu = leftMenu
     },
+    SETVERDION (state,Version){
+      state.Version = Version
+    },
   }
 })

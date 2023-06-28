@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted,ref } from "vue";
+import { computed, onMounted,ref,watch } from "vue";
 import { useStore } from "vuex";
 import { AddrHandle } from "../utils/tool";
 import { connect, changeNetwork } from "../web3";
@@ -21,6 +21,8 @@ import Menu from "../assets/Home/menu.png";
 import Lang from "../assets/Home/lang.png";
 import blackLang from "../assets/Home/blackLang.png";
 import Lucky from "../assets/Home/Lucky.png";
+import changeChain1 from '../assets/Home/changeChain1.png'
+import changeChain2 from '../assets/Home/changeChain2.png'
 const LevingWebsite = ref(false)
 const showPopover = ref(false)
 let dialogWidth = ref("595px")
@@ -31,6 +33,14 @@ const { locale } = useI18n();
 let address = computed(() => {
   return store.state.address;
 });
+let Version = computed(() => {
+  return store.state.Version;
+});
+watch(Version,(newValue,oldValue)=>{
+  if(newValue !== oldValue){
+    LevingWebsite.value = true
+  }
+})
 const goPath = (path) => {
   router.push(path);
 };
@@ -44,8 +54,15 @@ let setDialogWidth = (()=>{
   }
 })
 const changeVersion = ()=>{
-  LevingWebsite.value = true;
+  // LevingWebsite.value = true;
   showPopover.value = false;
+  goPath('/')
+  console.log(Version)
+  if(Version.value === 1){
+    store.commit('SETVERDION',2)
+  }else{
+    store.commit('SETVERDION',1)
+  }
   // router.addRoute('Lottery',{
   //   path: 'Lottery',
   //   component: {
@@ -103,82 +120,122 @@ onMounted(() => {
       <img :src="route.path === '/' ? logo : blackLogo" class="Logo" alt="" />
       <el-popover placement="bottom" trigger="click" :teleported="false" v-model:visible="showPopover">
         <template #reference>
-          <div class="Version"> Dao <img src="../assets/Home/arrow.png" alt=""></div>
+          <div class="HeaderLeftVersion">{{ Version === 1 ? 'Dao':'Lucky Hash' }} <img src="../assets/Home/arrow.png" alt=""></div>
         </template>
-        <div class="VersionDowm flexCenter" @click="changeVersion">Lucky Hash</div>
+        <div class="VersionDowm flexCenter" @click="changeVersion">{{ Version === 2 ? 'Dao':'Lucky Hash' }}</div>
       </el-popover>
     </div>
 
     <div class="HeaderRight">
-      <div class="menu">
-      <div
-        :class="['menuItem', { ActiveMenuItem: route.path === '/' }]"
-        @click="goPath('/')"
-      >
-        <div>
-          <img
-            :src="IconPath('/', HomeActiveIcon, HomeIcon, blackHomeIcon)"
-            alt=""
-          />
-          <span>{{ $t("Home") }}</span>
-          <div class="ActiveBorder"></div>
-        </div>
-      </div>
-      <div
-        :class="['menuItem', { ActiveMenuItem: route.path === '/Dao' }]"
-        @click="goPath('/Dao')"
-      >
-        <div>
-          <img
-            :src="IconPath('/Dao', StakeActiveIcon, StakeIcon, blackStakeIcon)"
-            alt=""
-          />
-          <span>{{ $t("DAO") }}</span>
-          <div class="ActiveBorder"></div>
-        </div>
-      </div>
-      <div
-        :class="['menuItem', { ActiveMenuItem: route.path === '/Rewares' }]"
-        @click="goPath('/Rewares')"
-      >
-        <div>
-          <img
-            :src="
-              IconPath(
-                '/Rewares',
-                RewardsActiveIcon,
-                RewardsIcon,
-                blackRewardsIcon
-              )
-            "
-            alt=""
-          />
-          <span>{{ $t("rewards") }}</span>
-          <div class="ActiveBorder"></div>
-        </div>
-      </div>
-      <!-- <div :class="['menuItem',{ActiveMenuItem:route.path === '/Swap'}]" @click="goPath('/Swap')">
+      <div class="menu" v-if="Version === 1">
+        <div
+          :class="['menuItem', { ActiveMenuItem: route.path === '/' }]"
+          @click="goPath('/')"
+        >
           <div>
-            <img :src="IconPath('/Lottery',RewardsActiveIcon,Lucky,blackRewardsIcon)" alt="">
+            <img
+              :src="IconPath('/', HomeActiveIcon, HomeIcon, blackHomeIcon)"
+              alt=""
+            />
+            <span>{{ $t("Home") }}</span>
+            <div class="ActiveBorder"></div>
+          </div>
+        </div>
+        <div
+          :class="['menuItem', { ActiveMenuItem: route.path === '/Dao' }]"
+          @click="goPath('/Dao')"
+        >
+          <div>
+            <img
+              :src="IconPath('/Dao', StakeActiveIcon, StakeIcon, blackStakeIcon)"
+              alt=""
+            />
+            <span>{{ $t("DAO") }}</span>
+            <div class="ActiveBorder"></div>
+          </div>
+        </div>
+        <div
+          :class="['menuItem', { ActiveMenuItem: route.path === '/Rewares' }]"
+          @click="goPath('/Rewares')"
+        >
+          <div>
+            <img
+              :src="
+                IconPath(
+                  '/Rewares',
+                  RewardsActiveIcon,
+                  RewardsIcon,
+                  blackRewardsIcon
+                )
+              "
+              alt=""
+            />
+            <span>{{ $t("rewards") }}</span>
+            <div class="ActiveBorder"></div>
+          </div>
+        </div>
+      </div>
+      <div class="menu" v-else>
+        <div
+          :class="['menuItem', { ActiveMenuItem: route.path === '/' }]"
+          @click="goPath('/')"
+        >
+          <div>
+            <!-- <img
+              :src="IconPath('/', HomeActiveIcon, HomeIcon, blackHomeIcon)"
+              alt=""
+            /> -->
+            <span>Home</span>
+            <div class="ActiveBorder"></div>
+          </div>
+        </div>
+        <div
+          :class="['menuItem', { ActiveMenuItem: route.path === '/Swap' }]"
+          @click="goPath('/Swap')"
+        >
+          <div>
+            <!-- <img
+              :src="IconPath('/', HomeActiveIcon, HomeIcon, blackHomeIcon)"
+              alt=""
+            /> -->
             <span>Swap</span>
             <div class="ActiveBorder"></div>
           </div>
         </div>
-        <div :class="['menuItem',{ActiveMenuItem:route.path === '/Lottery'}]" @click="goPath('/Lottery')">
+        <div
+          :class="['menuItem', { ActiveMenuItem: route.path === '/Lottery' }]"
+          @click="goPath('/Lottery')"
+        >
           <div>
-            <img :src="IconPath('/Lottery',RewardsActiveIcon,Lucky,blackRewardsIcon)" alt="">
-            <span>Lucky Hash</span>
+            <!-- <img
+              :src="IconPath('/Dao', StakeActiveIcon, StakeIcon, blackStakeIcon)"
+              alt=""
+            /> -->
+            <span>Lottery</span>
             <div class="ActiveBorder"></div>
           </div>
         </div>
-        <div :class="['menuItem',{ActiveMenuItem:route.path === '/Wallet'}]" @click="goPath('/Wallet')">
+        <div
+          :class="['menuItem', { ActiveMenuItem: route.path === '/Wallet' }]"
+          @click="goPath('/Wallet')"
+        >
           <div>
-            <img :src="IconPath('/Lottery',RewardsActiveIcon,Lucky,blackRewardsIcon)" alt="">
+            <!-- <img
+              :src="
+                IconPath(
+                  '/Rewares',
+                  RewardsActiveIcon,
+                  RewardsIcon,
+                  blackRewardsIcon
+                )
+              "
+              alt=""
+            /> -->
             <span>Wallet</span>
             <div class="ActiveBorder"></div>
           </div>
-        </div> -->
-    </div>
+        </div>
+      </div>
       <div class="connect" @click="Connect">
         <div class="content">
           {{ address ? AddrHandle(address) : $t("Connectwallet") }}
@@ -205,8 +262,13 @@ onMounted(() => {
   </div>
   <el-dialog v-model="LevingWebsite" title="Leving website" :width="dialogWidth" custom-class="WithdrawDialog" center :close-on-press-escape="false">
     <div class="dialogContent">
-      <img src="../assets/Home/changeChain.png" alt="">
-      <div class="changeChainText">
+      <img :src="Version === 1 ? changeChain1 : changeChain2" alt="">
+      <div class="changeChainText" v-if="Version === 1">
+        you will leave the <span>dYdXDAO website</span> now 
+        and please <span class="switch">switch</span> to OP wallet  
+        when jump to the <span>Lucky hash website</span>
+      </div>
+      <div class="changeChainText" v-else>
         you will leave the <span>Lucky hash website</span> now
         and please <span class="switch">switch</span> to OP wallet
         when jump to the <span>dYdXDAO website</span>
@@ -246,8 +308,9 @@ onMounted(() => {
         height: 28px;
       }
     }
-    .Version{
-      width: 90px;
+    .HeaderLeftVersion{
+      width: max-content;
+      padding: 0 20px;
       height: 45px;
       background: #303044;
       border-radius: 11px;
@@ -258,6 +321,9 @@ onMounted(() => {
       justify-content: center;
       font-size: 18px;
       color: #FFFFFF;
+      @media (max-width: 768px) {
+        display: none;
+      }
       img{
         margin-left: 5px;
       }
@@ -373,7 +439,9 @@ onMounted(() => {
   }
 }
 .VersionDowm{
-      width: 169px;
+      width: max-content;
+      white-space:nowrap;
+      padding: 0 20px;
       height: 63px;
       border-radius: 11px;
       background: #303044;

@@ -20,6 +20,14 @@ let setDialogWidth = (()=>{
     dialogWidth.value = def + 'px'
   }
 })
+const tableData = [
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+]
 </script>
 
 <template>
@@ -36,7 +44,7 @@ let setDialogWidth = (()=>{
     <div class="HistoryTitle">History</div>
     <div class="LotteryHistory">
         <div class="HistoryTop">Token / Status / Quantity / Time</div>
-        <div class="slideBox">
+        <!-- <div class="slideBox">
           <div class="HistoryRow" v-for="item in 10">
               <div class="HistoryColumn">
                 <div class="TokenIcon"></div>
@@ -46,7 +54,32 @@ let setDialogWidth = (()=>{
               <div class="HistoryColumn">$ 13413.2568</div>
               <div class="HistoryColumn">2022/02/22 12:22:33</div>
           </div>
-        </div>
+        </div> -->
+        <el-table :data="tableData" style="width: 100%" :show-header="false">
+          <el-table-column width="120">
+            <template #default>
+              <div class="flexCenter">
+                <div class="TokenIcon"></div>
+                OP
+              </div>
+            </template>
+          </el-table-column>
+          <el-table-column width="100">
+            <template #default>
+              Withdraw
+            </template>
+          </el-table-column>
+          <el-table-column width="170">
+            <template #default>
+              $ 13413.2568
+            </template>
+          </el-table-column>
+          <el-table-column width="170">
+            <template #default>
+              2022/02/22 12:22:33
+            </template>
+          </el-table-column>
+        </el-table>
     </div>
   </div>
   <el-dialog v-model="WithdrawVisible" :title="$t('Withdraw')" :width="dialogWidth" custom-class="WithdrawDialog" center :close-on-press-escape="false">

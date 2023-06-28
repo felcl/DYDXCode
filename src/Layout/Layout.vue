@@ -19,6 +19,9 @@ let leftMenu = computed(()=>{
 let address = computed(()=>{
   return store.state.address
 })
+let Version = computed(()=>{
+  return store.state.Version
+})
 const goPath=(path)=>{
   router.push(path)
   closeMenuSwitch()
@@ -33,6 +36,14 @@ const Connect=()=>{
     })
   }
 }
+const changeVersion = ()=>{
+  if(Version.value === 1){
+    store.commit('SETVERDION',2)
+  }else{
+    store.commit('SETVERDION',1)
+  }
+  closeMenuSwitch()
+}
 </script>
 
 <template>
@@ -41,7 +52,7 @@ const Connect=()=>{
     <router-view></router-view> 
   </div>
   <el-drawer v-model="leftMenu"  @close="closeMenuSwitch" :size="176" :with-header="false">
-    <div class="leftMenuTop">
+    <div class="leftMenuTop" v-if="Version === 1">
       <div class="drawerLogo">
         <img src="../assets/Home/MenuIcon.png" alt="">
       </div>
@@ -58,11 +69,33 @@ const Connect=()=>{
           <span>REWARDS</span>
       </div>
     </div>
+    <div class="leftMenuTop" v-else>
+      <div class="drawerLogo">
+        <img src="../assets/Home/MenuIcon.png" alt="">
+      </div>
+      <div class="MenuItem" @click="goPath('/')">
+          <!-- <img :src="route.path === '/' ? HomeActiveIcon:HomeIcon" alt=""> -->
+          <span>HOME</span>
+      </div>
+      <div class="MenuItem" @click="goPath('/Swap')">
+          <!-- <img :src="route.path === '/Swap' ? StakeActiveIcon:StakeIcon" alt=""> -->
+          <span>Swap</span>
+      </div>
+      <div class="MenuItem" @click="goPath('/Lottery')">
+          <!-- <img :src="route.path === '/Lottery' ? RewardsActive:Rewards" alt=""> -->
+          <span>Lottery</span>
+      </div>
+      <div class="MenuItem" @click="goPath('/Wallet')">
+          <!-- <img :src="route.path === '/Lottery' ? RewardsActive:Rewards" alt=""> -->
+          <span>Wallet</span>
+      </div>
+    </div>
     <div class="connect" @click="Connect">
       <div class="content" :class="['content',{Connected:!!address}]">
         {{ address ?  AddrHandle(address):'Connect wallet'}}
       </div>
     </div>
+    <div class="Version flexCenter" @click="changeVersion">{{ Version === 2 ? 'Dao':'Lucky Hash' }}</div>
   </el-drawer>
 </template>
 
@@ -112,6 +145,19 @@ const Connect=()=>{
     height: 100%;
     color: #6A6CFB;
   }
+}
+.Version{
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 10px;
+  background: #303044;
+  color: #fff;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  white-space:nowrap;
 }
 .el-drawer__body{
   width: 176px;
