@@ -209,7 +209,7 @@ const getCorresponding = () => {
     let amount = new BigNumber(FromAmount.value).times(10 ** OPTokenConfig.ABC.decimals).toString()
     contract.ABCEFC.methods.getAmountOut(amount,ABCReserveABCEFC.value,EFCReserve.value).call().then(res=>{
       ToAmount.value = new BigNumber(res).div(10 ** OPTokenConfig.EFC.decimals).toString()
-      console.log(new BigNumber(res).div(10 ** OPTokenConfig.EFC.decimals).toString(),"预计输出量") 
+      console.log(new BigNumber(res).div(10 ** OPTokenConfig.EFC.decimals).toString(),"预计输出量")
     })
   }
   if(From.value === 'EFC' && To.value === 'ABC'){
