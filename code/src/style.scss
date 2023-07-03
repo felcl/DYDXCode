@@ -1,0 +1,85 @@
+@font-face{
+  font-family: bitte;
+  src: url(./assets/font/font.ttf);
+}
+/* @font-face{
+  font-family: SiYuan;
+  src: url(./assets/font/SiYuan.otf);
+} */
+@font-face{
+  font-family: PingFang;
+  src: url(./assets/font/PingFangRegular.ttf);
+}
+@font-face{
+  font-family: pingfang;
+  src: url(./assets/font/PINGFANGHEAVY.ttf);
+}
+@font-face{
+  font-family: PingFang-Regular;
+  src: url(./assets/font/PingFang/PingFang-Regular.ttf);
+}
+@font-face{
+  font-family: PingFang-Heavy;
+  src: url(./assets/font/PingFang/PingFang-Heavy.ttf);
+}
+@font-face{
+  font-family: PingFang-Bold;
+  src: url(./assets/font/PingFang/PingFang-Bold.ttf);
+}
+@font-face{
+  font-family: PingFang-Medium;
+  src: url(./assets/font/PingFang/PingFang-Medium.ttf);
+}
+@font-face{
+  font-family: OPlusSansBold;
+  src: url(./assets/font/OPlusSansBold.ttf);
+}
+/* @font-face{
+  font-family: OPlusSansMedium;
+  src: url(./assets/font/PingFang/OPlusSansMedium.ttf);
+} */
+@font-face{
+  font-family: OPlusSansRegular;
+  src: url(./assets/font/OPlusSansRegular.ttf);
+}
+:root {
+  /* font-family: PingFang !important; */
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  --el-message-close-size:30px;
+  .el-popper{
+    --el-bg-color-overlay:transparent !important;
+    --el-border-color-light:transparent !important;
+  }
+  .el-table{
+    --el-table-tr-bg-color:transparent !important;
+    --el-table-bg-color:transparent !important;
+    --el-table-border-color:transparent !important;
+    --el-bg-color:transparent #1C1C28 !important;
+  }
+}
+body{
+  margin: 0;
+  padding: 0;
+  background: #14141E;
+}
+
+.el-empty__image{
+  opacity: 0.35 !important;
+}
+.el-notification__title{
+  color: #333 !important;
+}
+.el-notification__content{
+  text-align: left !important;
+}
+.el-dialog__headerbtn{
+  top: 16px !important;
+  right: 20px !important;
+}

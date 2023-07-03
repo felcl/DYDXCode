@@ -5,7 +5,7 @@ import { ElNotification } from 'element-plus'
 import { useI18n } from "vue-i18n";
 import Axios from './axios'
 import {init,changeNetwork} from './web3'
-import {chainConfig} from './config'
+import {chainConfig,OpchainConfig} from './config'
 import Layout from './Layout/Layout.vue'
 import {GetQueryString} from './utils/tool'
 const { t:$t } = useI18n();
@@ -15,6 +15,9 @@ let dialogWidth = ref("550px")
 let InvitationLink = ref("")
 const address = computed(() => {
   return store.state.address;
+});
+const Version = computed(() => {
+  return store.state.Version;
 });
 watch(
   address,
@@ -107,7 +110,8 @@ onMounted(async()=>{
     if(window.ethereum){
       //用户账号初始化合约
       let chainId = await window.ethereum.request({ method: "eth_chainId" });
-      if(chainId !== chainConfig.chainId){
+      
+      if(chainId !== (Version === 1 ? chainConfig.chainId : OpchainConfig.chainId)){
         changeNetwork(()=>{
           init(address=>{
             if(address)

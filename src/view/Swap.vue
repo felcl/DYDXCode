@@ -5,19 +5,19 @@
       <div class="SwapLabel">You'll pay</div>
       <div class="PutSel">
         <div class="put">
-          <input type="text">
+          <input type="text" v-model="FromAmount" Puttarget="FromAmount" @input="changeNumPut">
         </div>
         <el-dropdown trigger="click">
           <div class="sel">
             <div class="tokenIcon"></div>
-            <div class="TokenName">ABC</div>
+            <div class="TokenName">{{From}}</div>
             <img src="../assets/Home/arrow.png" alt="">
           </div>
           <template #dropdown>
             <div class="SelList">
-              <div class="SelItem">
+              <div class="SelItem" v-for="(item,key) in OPTokenConfig" @click="changeFrom(key)">
                 <div class="TokenIcon"></div>
-                <div class="TokenName">ABC</div>
+                <div class="TokenName">{{ key }}</div>
               </div>
             </div>
           </template>
@@ -26,19 +26,19 @@
       <div class="SwapLabel">You'll receive</div>
       <div class="PutSel">
         <div class="put">
-          <input type="text">
+          <input type="text" v-model="ToAmount" Puttarget="ToAmount" @input="changeNumPut">
         </div>
         <el-dropdown trigger="click">
           <div class="sel">
             <div class="tokenIcon"></div>
-            <div class="TokenName">ABC</div>
+            <div class="TokenName">{{ To }}</div>
             <img src="../assets/Home/arrow.png" alt="">
           </div>
           <template #dropdown>
             <div class="SelList">
-              <div class="SelItem">
+              <div class="SelItem" v-for="(item,key) in OPTokenConfig" @click="changeTo(key)">
                 <div class="TokenIcon"></div>
-                <div class="TokenName">ABC</div>
+                <div class="TokenName">{{ key }}</div>
               </div>
             </div>
           </template>
@@ -60,7 +60,9 @@
         <div class="label">Estimated amount</div>
         <div class="value">226</div>
       </div>
-      <div class="submitBtn flexCenter">Submit</div>
+      <div class="submitBtn Disabled flexCenter" v-if="!FromAmount || !ToAmount">禁用</div>
+      <div class="submitBtn Disabled flexCenter" v-else-if="!ifApprove" @click="Approve">授权</div>
+      <div class="submitBtn flexCenter" v-else @click="submit">提交</div>
     </div>
     <div class="historyTitle">Swap History</div>
     <div class="historyBox">
@@ -90,6 +92,142 @@
 </template>
 
 <script setup>
+import { useStore } from "vuex";
+import {OPTokenConfig,contractOpAddress} from '../config'
+import {ref, computed, watch,reactive} from 'vue'
+import BigNumber from 'big.js'
+const From = ref('OP')
+const To = ref('ABC')
+import {contract} from '../web3'
+const store = useStore();
+const FromAmount = ref('')
+const ToAmount = ref('')
+const OPReserve = ref('0')
+const ABCReserveOPABC = ref('0')
+const ABCReserveABCEFC = ref('0')
+const EFCReserve = ref('0')
+// const OPToOPABC = ref(new BigNumber(0))
+// const ABCToOPABC = ref(new BigNumber(0))
+// const ABCToABCEFC = ref(new BigNumber(0))
+// const EFCToABCEFC = ref(new BigNumber(0))
+const AllowanceMap =reactive({
+  OPToOPABC:new BigNumber(0),
+  ABCToOPABC:new BigNumber(0),
+  ABCToABCEFC:new BigNumber(0),
+  EFCToABCEFC:new BigNumber(0),
+})
+const SwapMap = {
+  OPABC:contractOpAddress.OPABC,
+  ABCOP:contractOpAddress.OPABC,
+  ABCEFC:contractOpAddress.ABCEFC,
+  EFCABC:contractOpAddress.ABCEFC,
+}
+const address = computed(() => {
+  return store.state.address;
+});
+const ifApprove = computed(()=>{
+  if(From.value === 'OP' && To.value == 'ABC' && AllowanceMap.OPToOPABC.lt(FromAmount.value || 0)){
+    return false
+  }
+  if(From.value === 'ABC' && To.value == 'OP' && AllowanceMap.ABCToOPABC.lt(FromAmount.value || 0)){
+    return false
+  }
+  return true
+})
+watch(address,(address)=>{
+  if(address){
+    getAllowance('OP',contractOpAddress.OPABC,'OPToOPABC')
+    getAllowance('ABC',contractOpAddress.OPABC,'ABCToOPABC')
+    getAllowance('ABC',contractOpAddress.ABCEFC,'ABCToABCEFC')
+    getAllowance('EFC',contractOpAddress.ABCEFC,'EFCToABCEFC')
+    contract.OPABC.methods.getReserves().call().then(res=>{
+      OPReserve.value = res._reserve0
+      ABCReserveOPABC.value = res._reserve1
+      console.log(res,"OPABC各自质押量")
+    })
+    contract.ABCEFC.methods.getReserves().call().then(res=>{
+      ABCReserveABCEFC.value = res._reserve0
+      EFCReserve.value = res._reserve1
+      console.log(res,"ABCEFC各自质押量")
+    })
+  }
+})
+const Approve = () => {
+  let amount = new BigNumber(FromAmount.value).times(10 ** OPTokenConfig[From.value].decimals).toString()
+  contract[From.value].methods.approve(SwapMap[From.value+To.value],amount).send({from:address.value}).then(res=>{
+    console.log(res,"授权结果")
+  })
+}
+const getAllowance = (token,toAddress,toValue) => {
+  contract[token].methods.allowance(address.value,toAddress).call({from:address.value}).then(res=>{
+    AllowanceMap[toValue] =  new BigNumber(res).div(10 ** OPTokenConfig[token].decimals)
+    console.log(res,"查询授权-"+toValue)
+  })
+}
+const changeFrom = (TokenName) => {
+  From.value = TokenName
+}
+const changeTo = (TokenName) => {
+  To.value = TokenName
+}
+function changeNumPut(event) {
+  let value = event.target.value;
+  if (/^\./g.test(value)) {
+    value = "0" + value;
+  }
+  let putVal = value.replace(/[^\d.]/g, "");
+  let putArr = putVal.split(".");
+  // if (putArr[1] && putArr[1].length > accuracy) {
+  //   putArr[1] = putArr[1].slice(0, accuracy);
+  // }
+  putVal = putArr.join(".");
+  if(event.target.attributes.puttarget.value === 'FromAmount'){
+    FromAmount.value = putVal
+  }
+  if(event.target.attributes.puttarget.value === 'ToAmount'){
+    ToAmount.value = putVal
+  }
+  getCorresponding()
+  // return putVal;
+}
+const getCorresponding = () => {
+  if(From.value === 'OP'){
+    let amount = new BigNumber(FromAmount.value).times(10 ** OPTokenConfig.OP.decimals).toString()
+    contract.OPABC.methods.getAmountOut(amount,OPReserve.value,ABCReserveOPABC.value).call().then(res=>{
+      ToAmount.value = new BigNumber(res).div(10 ** OPTokenConfig.ABC.decimals).toString()
+      console.log(new BigNumber(res).div(10 ** OPTokenConfig.ABC.decimals).toString(),"预计输出量")
+    })
+  }
+  if(From.value === 'ABC' && To.value === 'OP'){
+    let amount = new BigNumber(FromAmount.value).times(10 ** OPTokenConfig.ABC.decimals).toString()
+    contract.OPABC.methods.getAmountIn(amount,ABCReserveOPABC.value,OPReserve.value).call().then(res=>{
+      ToAmount.value = new BigNumber(res).div(10 ** OPTokenConfig.OP.decimals).toString()
+      console.log(new BigNumber(res).div(10 ** OPTokenConfig.OP.decimals).toString(),"预计输出量")
+    })
+  }
+  if(From.value === 'ABC' && To.value === 'EFC'){
+    let amount = new BigNumber(FromAmount.value).times(10 ** OPTokenConfig.ABC.decimals).toString()
+    contract.ABCEFC.methods.getAmountOut(amount,ABCReserveABCEFC.value,EFCReserve.value).call().then(res=>{
+      ToAmount.value = new BigNumber(res).div(10 ** OPTokenConfig.EFC.decimals).toString()
+      console.log(new BigNumber(res).div(10 ** OPTokenConfig.EFC.decimals).toString(),"预计输出量")
+    })
+  }
+  if(From.value === 'EFC' && To.value === 'ABC'){
+    let amount = new BigNumber(FromAmount.value).times(10 ** OPTokenConfig.EFC.decimals).toString()
+    contract.ABCEFC.methods.getAmountIn(amount,EFCReserve.value,ABCReserveABCEFC.value).call().then(res=>{
+      ToAmount.value = new BigNumber(res).div(10 ** OPTokenConfig.ABC.decimals).toString()
+      console.log(new BigNumber(res).div(10 ** OPTokenConfig.ABC.decimals).toString(),"预计输出量")
+    })
+  }
+}
+const submit = () => {
+  const inAmount = new BigNumber(FromAmount.value).times(10 ** 18).toString()
+  const outAmount = new BigNumber(ToAmount.value).times(10 ** 18).toString()
+  console.log(inAmount,outAmount)
+  contract.OPABC.methods.swapSell(inAmount,outAmount,Date.parse(new Date())/1000+60).send({
+      from:address.value
+  })
+}
 </script>
 
 <style lang="scss" scoped>
@@ -209,6 +347,10 @@
     font-size: 20px;
     font-family: PingFang-Bold;
     cursor: pointer;
+  }
+  .Disabled{
+    background: #767676;
+    color: #1C1C28;
   }
 }
 .historyTitle{

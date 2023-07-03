@@ -1,5 +1,6 @@
 import Web3 from "web3"
-import {ABI,contractAddress,chainConfig} from './config'
+import {store} from "./store";
+import {ABI,OPABI,contractAddress,contractOpAddress,chainConfig, OpchainConfig} from './config'
 export const contract ={}
 export const connect =function (callback){
     var web3Provider
@@ -41,12 +42,21 @@ export const init = function(callback) {
         } 
     })
     //实例化web3
-    for (const key in contractAddress) {
-        // //console.log(key,contractAddress[key])
+    if(store.state.Version === 1){
+      for (const key in contractAddress) {
+          // //console.log(key,contractAddress[key])
+          contract[key]= new web3.eth.Contract(
+              ABI[key],
+              contractAddress[key]
+          )
+      }
+    }else{
+      for (const key in contractOpAddress) {
         contract[key]= new web3.eth.Contract(
-            ABI[key],
-            contractAddress[key]
+            OPABI[key],
+            contractOpAddress[key]
         )
+    }
     }
 }
 export async function changeNetwork(callback) {
@@ -58,19 +68,20 @@ export async function changeNetwork(callback) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const request = (window.ethereum).request;
     // 获取当前链id
-    const chainId = await request({ method: "eth_chainId" });
+    // const chainId = await request({ method: "eth_chainId" });
     // console.log(`chainId:${chainId}`);
-    if (chainId == chainConfig.chainId) {
-        // console.log(`当前链已经是:${chainConfig.chainName}`);
-    } else {
-        // console.log(`正在切换链为:${chainConfig.chainName}`);
-    }
+    // if (chainId == chainConfig.chainId) {
+    //     console.log(`当前链已经是:${chainConfig.chainName}`);
+    // } else {
+    //     console.log(`正在切换链为:${chainConfig.chainName}`);
+    // }
      
     try {
     // 切换
+      let chainInfo = store.state.Version === 1 ? chainConfig:OpchainConfig
       await request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: chainConfig.chainId }],
+        params: [{ chainId: chainInfo.chainId }],
       });
       callback()
       return true;
@@ -83,7 +94,7 @@ export async function changeNetwork(callback) {
             // 添加
           await request({
             method: "wallet_addEthereumChain",
-            params: [chainConfig],
+            params: [chainInfo],
           });
           callback()
         } catch (addError) {
